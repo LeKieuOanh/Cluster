@@ -85,10 +85,10 @@ def get_line_below_symbolic_zmatrix(file_path):
         return None
 
 def get_number_atoms_cluster(file_path):
-    numbers = re.search(r'\d',file_path)
+    numbers = re.search(r'Si(\d+)', file_path, re.IGNORECASE)
 
     if numbers:
-        return(numbers.group())
+        return int(numbers.group(1))
     else:
         return("1")
 
