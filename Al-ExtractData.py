@@ -44,7 +44,7 @@ def extract_last_orientation_selected_columns(file_path, columns_to_keep=[0, 3, 
             try:
                 center = int(values[0])
                 x, y, z = float(values[-3]), float(values[-2]), float(values[-1])
-                formatted_data.append(f"{center}\t %s \t %f \t%f \t%f" % ("Si",x, y, z))
+                formatted_data.append(f"{center} \t %f \t%f \t%f" % (x, y, z))
                 data = []
                 for item in formatted_data:
                     data.append(" ".join(item.split()))
@@ -85,7 +85,7 @@ def get_line_below_symbolic_zmatrix(file_path):
         return None
 
 def get_number_atoms_cluster(file_path):
-    numbers = re.search(r'Si(\d+)', file_path, re.IGNORECASE)
+    numbers = re.search(r'Al(\d+)', file_path, re.IGNORECASE)
 
     if numbers:
         return int(numbers.group(1))
@@ -125,8 +125,8 @@ def create_files_in_folder(folder_name, base_filename, number_atoms, symbolic_zm
         print(f"Error creating file '{filename}': {e}")
 
 # Usage:
-folder_path = 'B3LYP-6311+Gd_Sin/'
-folder_path_creat = 'B3LYP-6311/'
+folder_path = 'Al-B2LYP-6311+Gd-CCSD(T)/'
+folder_path_creat = 'Al-B2LYP-6311+Gd-CCSD(T)-xyz/'
 
 for filename in os.listdir(folder_path):
     if filename.endswith('.log'):
