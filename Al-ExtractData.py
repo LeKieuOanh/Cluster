@@ -81,7 +81,7 @@ def get_line_below_symbolic_zmatrix(file_path):
             return None  # "Symbolic Z-matrix" not found
 
     except FileNotFoundError:
-        print(f"Error01: File not found at {file_path}")
+        print(f"Error: File not found at {file_path}")
         return None
 
 def get_number_atoms_cluster(file_path):
@@ -125,15 +125,19 @@ def create_files_in_folder(folder_name, base_filename, number_atoms, symbolic_zm
         print(f"Error creating file '{filename}': {e}")
 
 # Usage:
-
+folder_path = 'Al-B2LYP-6311+Gd-CCSD(T)/'
 folder_path_creat = 'Al-B2LYP-6311+Gd-CCSD(T)-xyz'
 
-file_path = "Al-B2LYP-6311+Gd-CCSD(T)/Al17-anion-singlet.log"
-print(file_path)
-get_number_atoms_cluster_data = get_number_atoms_cluster(file_path.split("/")[1])
-print(get_number_atoms_cluster_data)
-selected_symbolic_Z_matric = get_line_below_symbolic_zmatrix(file_path)
-print(selected_symbolic_Z_matric)
-selected_orientation_data = extract_last_orientation_selected_columns(file_path)
-print(selected_orientation_data)
-create_files_in_folder(folder_path_creat,"Al17-anion-singlet",get_number_atoms_cluster_data,selected_symbolic_Z_matric,selected_orientation_data)
+for filename in os.listdir(folder_path):
+    if filename.endswith('.log'):
+        # print(f"Reading file name {os.path.splitext(filename)[0]}")
+        file_path = os.path.join(folder_path,filename)
+        # print(file_path)
+        get_number_atoms_cluster_data = get_number_atoms_cluster(file_path.split("/")[1])
+        # print(get_number_atoms_cluster_data)
+        selected_symbolic_Z_matric = get_line_below_symbolic_zmatrix(file_path)
+        # print(selected_symbolic_Z_matric)
+        selected_orientation_data = extract_last_orientation_selected_columns(file_path)
+        # print(selected_orientation_data)
+        create_files_in_folder(folder_path_creat,os.path.splitext(filename)[0],get_number_atoms_cluster_data,selected_symbolic_Z_matric,selected_orientation_data)
+        print(f"Folder '{filename}' created successfully.")
