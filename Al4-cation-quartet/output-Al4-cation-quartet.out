@@ -1,0 +1,287 @@
+#INFO: **** input file is /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al4-cation-quartet/input.py ****
+import numpy
+from pyscf import gto, scf, dft, mp, cc
+from pyscf.mp import uobmp2_mom_conv, dfuobmp2_mom_conv, uhf_mom
+from pyscf.mp import  mp2, ump2
+from pyscf.tools import molden
+import os
+from functools import reduce
+
+
+mol = gto.Mole()
+geom = os.environ.get('geom_txt')
+mol.atom = geom
+mol.basis = os.environ.get('basis', 'cc-pvdz')
+mol.unit = 'A'
+mol.charge = int(os.environ.get('charge', 0))
+mol.spin = int(os.environ.get('spin', 0))
+mol.verbose = 4
+mol.build()
+
+#################### Ground state using density fitting
+### Hartree-Fock
+a  = scf.UHF(mol).density_fit()
+a.kernel()
+
+### Ground state OBMP2 calculation
+ob = dfuobmp2_mom_conv.DFUOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 1
+ob.cos = 1
+e_obmp2g = ob.kernel()
+
+### Ground state O2BMP2 calculation
+ob = dfuobmp2_mom_conv.DFUOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 0                             
+ob.cos = 1.2                             
+e_o2bmp2g = ob.kernel()  
+
+#################### Ground state NOT using density fitting
+### Hartree-Fock
+a  = scf.UHF(mol)
+a.kernel()
+
+### Ground state OBMP2 calculation
+ob = uobmp2_mom_conv.UOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 1
+ob.cos = 1
+#e_obmp2g = ob.kernel()
+
+### Ground state O2BMP2 calculation
+ob = uobmp2_mom_conv.UOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 0
+ob.cos = 1.2   ## the cos can be vary ...                        	 
+#e_o2bmp2g = ob.kernel()
+
+
+## Results from density-fitting approximate with non-using density fitting 
+## check results between df and non-df with small molecules before running the important molecules
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Linux', node='comphys', release='3.10.0-1160.119.1.el7.x86_64', version='#1 SMP Tue Jun 4 14:43:51 UTC 2024', machine='x86_64', processor='x86_64')  Threads 8
+Python 3.7.9 (default, Dec  4 2023, 13:00:18) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+numpy 1.21.6  scipy 1.7.3
+Date: Sun May 25 19:09:08 2025
+PySCF version 1.7.0
+PySCF path  /share/installs/pyscf/pyscf
+GIT HEAD      ref: refs/heads/ob-mp2
+GIT ob-mp2 branch  f0fc63383ab6c719c0c91f5e07a6895c637b700d
+
+[CONFIG] conf_file None
+[INPUT] verbose = 4
+[INPUT] num. atoms = 4
+[INPUT] num. electrons = 9
+[INPUT] charge = 1
+[INPUT] spin (= nelec alpha-beta = 2S) = 3
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = A
+[INPUT]  1 H      0.000000000000   0.000000000000   2.206232000000 AA    0.000000000000   0.000000000000   4.169174247251 Bohr
+[INPUT]  2 He     0.000000000000   1.615775000000   0.000000000000 AA    0.000000000000   3.053372228919   0.000000000000 Bohr
+[INPUT]  3 Li     0.000000000000   0.000000000000  -2.206232000000 AA    0.000000000000   0.000000000000  -4.169174247251 Bohr
+[INPUT]  4 Be     0.000000000000  -1.615775000000   0.000000000000 AA    0.000000000000  -3.053372228919   0.000000000000 Bohr
+
+nuclear repulsion = 6.3140452833049
+number of shells = 8
+number of NR pGTOs = 72
+number of NR cGTOs = 12
+basis = sto-6g
+ecp = {}
+CPU time:         1.42
+
+
+******** <class 'pyscf.df.df_jk.density_fit.<locals>.DFHF'> ********
+method = DFHF-UHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al4-cation-quartet/tmpo1rjh8tk
+max_memory 4000 MB (current use 60 MB)
+number electrons alpha = 6  beta = 3
+Set gradient conv threshold to 3.16228e-05
+******** <class 'pyscf.df.df.DF'> ********
+auxbasis = None
+max_memory = 4000
+_cderi_to_save = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al4-cation-quartet/tmpzghdkp11
+Even tempered Gaussians are generated as DF auxbasis for  He H Li Be
+init E= -25.047806078968
+  alpha nocc = 6  HOMO = -0.00822004128155626  LUMO = 0.115511438963639
+  beta  nocc = 3  HOMO = -0.925767649665246  LUMO = -0.330016610257677
+
+WARN: system HOMO -0.00822004128155676 >= system LUMO -0.330016610257677
+
+cycle= 1 E= -24.9427861627111  delta_E= 0.105  |g|= 0.0874  |ddm|= 1.59
+  alpha nocc = 6  HOMO = -0.366528554010264  LUMO = -0.202164847037916
+  beta  nocc = 3  HOMO = -1.08058257373417  LUMO = -0.272709107097773
+cycle= 2 E= -25.0001260440797  delta_E= -0.0573  |g|= 0.062  |ddm|= 0.621
+  alpha nocc = 6  HOMO = -0.407013975694589  LUMO = -0.136723672239132
+  beta  nocc = 3  HOMO = -1.08116641666441  LUMO = -0.201096333250093
+cycle= 3 E= -25.0245152485318  delta_E= -0.0244  |g|= 0.0421  |ddm|= 0.371
+  alpha nocc = 6  HOMO = -0.440243278839848  LUMO = -0.104316418968261
+  beta  nocc = 3  HOMO = -1.08499217288425  LUMO = -0.16267985943995
+cycle= 4 E= -25.037203721163  delta_E= -0.0127  |g|= 0.00664  |ddm|= 0.475
+  alpha nocc = 6  HOMO = -0.431129219915941  LUMO = -0.11672450258565
+  beta  nocc = 3  HOMO = -1.0850787600999  LUMO = -0.167866998195345
+cycle= 5 E= -25.0373086808408  delta_E= -0.000105  |g|= 0.00311  |ddm|= 0.0245
+  alpha nocc = 6  HOMO = -0.432048942886046  LUMO = -0.11632702760819
+  beta  nocc = 3  HOMO = -1.08531858930781  LUMO = -0.166532430187483
+cycle= 6 E= -25.0373671584592  delta_E= -5.85e-05  |g|= 0.00179  |ddm|= 0.0279
+  alpha nocc = 6  HOMO = -0.430398833921924  LUMO = -0.118402065993962
+  beta  nocc = 3  HOMO = -1.08527592948802  LUMO = -0.16712540622961
+cycle= 7 E= -25.0373977120425  delta_E= -3.06e-05  |g|= 0.00126  |ddm|= 0.0169
+  alpha nocc = 6  HOMO = -0.430770266148727  LUMO = -0.118304161979687
+  beta  nocc = 3  HOMO = -1.08504540894233  LUMO = -0.1669148766817
+cycle= 8 E= -25.0374281506422  delta_E= -3.04e-05  |g|= 0.000405  |ddm|= 0.0309
+  alpha nocc = 6  HOMO = -0.430799304175509  LUMO = -0.118081148458518
+  beta  nocc = 3  HOMO = -1.08493283263844  LUMO = -0.166794924498534
+cycle= 9 E= -25.0374299445276  delta_E= -1.79e-06  |g|= 0.000118  |ddm|= 0.00803
+  alpha nocc = 6  HOMO = -0.431009003721264  LUMO = -0.117886077263719
+  beta  nocc = 3  HOMO = -1.08494716922048  LUMO = -0.16672507899845
+cycle= 10 E= -25.0374300060135  delta_E= -6.15e-08  |g|= 2.13e-05  |ddm|= 0.00114
+  alpha nocc = 6  HOMO = -0.431005041074657  LUMO = -0.117909625320016
+  beta  nocc = 3  HOMO = -1.084952216786  LUMO = -0.166733173933118
+cycle= 11 E= -25.0374300083109  delta_E= -2.3e-09  |g|= 5.5e-06  |ddm|= 0.000217
+  alpha nocc = 6  HOMO = -0.431003370817372  LUMO = -0.11790697396852
+  beta  nocc = 3  HOMO = -1.08495397074569  LUMO = -0.166732243942735
+cycle= 12 E= -25.0374300084634  delta_E= -1.52e-10  |g|= 1.11e-06  |ddm|= 5.78e-05
+  alpha nocc = 6  HOMO = -0.431004554563828  LUMO = -0.117907081108406
+  beta  nocc = 3  HOMO = -1.08495410223183  LUMO = -0.166732161550119
+Extra cycle  E= -25.0374300084668  delta_E= -3.42e-12  |g|= 5.82e-07  |ddm|= 3.91e-06
+converged SCF energy = -25.0374300084668  <S^2> = 3.750003  2S+1 = 4.0000015
+shift = 0
+thresh = 1e-05 
+eri1 (187, 78)
+eri1 (187, 78)
+    CPU time for making amplitude: integral transform      0.01 sec, wall time      0.00 sec
+shape (187, 72)
+1st memory: 108.0 MiB
+eri1 (187, 78)
+eri1 (187, 78)
+2nd memory: 108.0 MiB
+
+========================
+iter = 0  energy = -25.038374 energy diff = 25.038374
+multiplicity <S^2> : Reference = 3.750003 Response = 3.7500033 Projector = 3.7500036
+eri1 (187, 78)
+eri1 (187, 78)
+    CPU time for making amplitude: integral transform      0.02 sec, wall time      0.00 sec
+shape (187, 72)
+1st memory: 108.0 MiB
+eri1 (187, 78)
+eri1 (187, 78)
+2nd memory: 108.0 MiB
+
+========================
+iter = 1  energy = -25.038381 energy diff = 0.000007
+multiplicity <S^2> : Reference = 3.7500027 Response = 3.7500028 Projector = 3.7500029
+
+UOB-MP2 has converged
+UOB-MP2 energy =  -25.038380791421083
+shift = 0
+thresh = 1e-05 
+eri1 (187, 78)
+eri1 (187, 78)
+    CPU time for making amplitude: integral transform      0.02 sec, wall time      0.00 sec
+shape (187, 72)
+1st memory: 108.0 MiB
+eri1 (187, 78)
+eri1 (187, 78)
+2nd memory: 108.0 MiB
+
+========================
+iter = 0  energy = -25.038112 energy diff = 25.038112
+multiplicity <S^2> : Reference = 3.750003 Response = 3.7500033 Projector = 3.7500036
+eri1 (187, 78)
+eri1 (187, 78)
+    CPU time for making amplitude: integral transform      0.02 sec, wall time      0.00 sec
+shape (187, 72)
+1st memory: 108.0 MiB
+eri1 (187, 78)
+eri1 (187, 78)
+2nd memory: 108.0 MiB
+
+========================
+iter = 1  energy = -25.038115 energy diff = 0.000003
+multiplicity <S^2> : Reference = 3.7500027 Response = 3.7500023 Projector = 3.750002
+
+UOB-MP2 has converged
+UOB-MP2 energy =  -25.038115261371473
+
+
+******** <class 'pyscf.scf.uhf.UHF'> ********
+method = UHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al4-cation-quartet/tmp2vgin538
+max_memory 4000 MB (current use 108 MB)
+number electrons alpha = 6  beta = 3
+Set gradient conv threshold to 3.16228e-05
+init E= -25.0480225166182
+  alpha nocc = 6  HOMO = -0.00829518428343176  LUMO = 0.115411563896704
+  beta  nocc = 3  HOMO = -0.925832856628174  LUMO = -0.330081230808283
+
+WARN: system HOMO -0.00829518428343176 >= system LUMO -0.330081230808283
+
+cycle= 1 E= -24.9429969476106  delta_E= 0.105  |g|= 0.0874  |ddm|= 1.59
+  alpha nocc = 6  HOMO = -0.366659057814994  LUMO = -0.202234586660147
+  beta  nocc = 3  HOMO = -1.08047270212699  LUMO = -0.272715311752614
+cycle= 2 E= -25.0003513358047  delta_E= -0.0574  |g|= 0.062  |ddm|= 0.621
+  alpha nocc = 6  HOMO = -0.407176862789664  LUMO = -0.136805783684972
+  beta  nocc = 3  HOMO = -1.08104728901731  LUMO = -0.201085880122234
+cycle= 3 E= -25.0247428875748  delta_E= -0.0244  |g|= 0.0421  |ddm|= 0.371
+  alpha nocc = 6  HOMO = -0.440356773582182  LUMO = -0.104364844596236
+  beta  nocc = 3  HOMO = -1.08490279922602  LUMO = -0.162747268247955
+cycle= 4 E= -25.037412774979  delta_E= -0.0127  |g|= 0.00662  |ddm|= 0.475
+  alpha nocc = 6  HOMO = -0.431253988924619  LUMO = -0.116754014880455
+  beta  nocc = 3  HOMO = -1.08498946170399  LUMO = -0.167930379448356
+cycle= 5 E= -25.0375168160729  delta_E= -0.000104  |g|= 0.00309  |ddm|= 0.0244
+  alpha nocc = 6  HOMO = -0.432176191804876  LUMO = -0.116351938424883
+  beta  nocc = 3  HOMO = -1.0852360770997  LUMO = -0.166597916326274
+cycle= 6 E= -25.0375741100042  delta_E= -5.73e-05  |g|= 0.00176  |ddm|= 0.0277
+  alpha nocc = 6  HOMO = -0.430542007159698  LUMO = -0.118404457874364
+  beta  nocc = 3  HOMO = -1.08519678614753  LUMO = -0.16718739385067
+cycle= 7 E= -25.0376035270095  delta_E= -2.94e-05  |g|= 0.00125  |ddm|= 0.0165
+  alpha nocc = 6  HOMO = -0.430891711081264  LUMO = -0.118327738663649
+  beta  nocc = 3  HOMO = -1.08497179555479  LUMO = -0.16698694410395
+cycle= 8 E= -25.0376333567753  delta_E= -2.98e-05  |g|= 0.000406  |ddm|= 0.0305
+  alpha nocc = 6  HOMO = -0.430922539994339  LUMO = -0.118108319690273
+  beta  nocc = 3  HOMO = -1.08485818206241  LUMO = -0.166868398348398
+cycle= 9 E= -25.0376351854023  delta_E= -1.83e-06  |g|= 0.000118  |ddm|= 0.00815
+  alpha nocc = 6  HOMO = -0.431132482006698  LUMO = -0.117911489453392
+  beta  nocc = 3  HOMO = -1.08487252438579  LUMO = -0.166797654767985
+cycle= 10 E= -25.0376352475607  delta_E= -6.22e-08  |g|= 2.13e-05  |ddm|= 0.00115
+  alpha nocc = 6  HOMO = -0.431128904187042  LUMO = -0.117935081067397
+  beta  nocc = 3  HOMO = -1.08487752596247  LUMO = -0.16680583919952
+cycle= 11 E= -25.0376352498456  delta_E= -2.28e-09  |g|= 5.51e-06  |ddm|= 0.000217
+  alpha nocc = 6  HOMO = -0.431127432504243  LUMO = -0.1179322317297
+  beta  nocc = 3  HOMO = -1.08487928099147  LUMO = -0.166804838278264
+cycle= 12 E= -25.0376352499986  delta_E= -1.53e-10  |g|= 1.11e-06  |ddm|= 5.8e-05
+  alpha nocc = 6  HOMO = -0.431128619291813  LUMO = -0.117932337470789
+  beta  nocc = 3  HOMO = -1.08487941556955  LUMO = -0.166804756350711
+Extra cycle  E= -25.0376352500021  delta_E= -3.44e-12  |g|= 5.85e-07  |ddm|= 3.88e-06
+converged SCF energy = -25.0376352500021  <S^2> = 3.750003  2S+1 = 4.0000015
