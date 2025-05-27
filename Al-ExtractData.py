@@ -44,7 +44,7 @@ def extract_last_orientation_selected_columns(file_path, columns_to_keep=[0, 3, 
             try:
                 center = int(values[0])
                 x, y, z = float(values[-3]), float(values[-2]), float(values[-1])
-                formatted_data.append(f"{center} \t %f \t%f \t%f" % (x, y, z))
+                formatted_data.append(f"%s \t %f \t%f \t%f" % ("Al",x, y, z))
                 data = []
                 for item in formatted_data:
                     data.append(" ".join(item.split()))
