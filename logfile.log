@@ -1,0 +1,764 @@
+>>> Đang xử lý phân tử: Al10-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 54 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al10-cation-doublet 
+>>> Đang xử lý phân tử: Al10-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 55 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al10-neutral-singlet 
+>>> Đang xử lý phân tử: Al11-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 65 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al11-cation-singlet 
+>>> Đang xử lý phân tử: Al11-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 66 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al11-neutral-doublet 
+>>> Đang xử lý phân tử: Al12-cation-doublet-2
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-cation-doublet-2 
+>>> Đang xử lý phân tử: Al12-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-cation-doublet 
+>>> Đang xử lý phân tử: Al12-neutral-singlet-2
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-neutral-singlet-2 
+>>> Đang xử lý phân tử: Al12-neutral-singlet-3
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-neutral-singlet-3 
+>>> Đang xử lý phân tử: Al12-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-neutral-singlet 
+>>> Đang xử lý phân tử: Al13-anion-singlet
+>> charge=-1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al13-anion-singlet 
+>>> Đang xử lý phân tử: Al13-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al13-cation-singlet 
+>>> Đang xử lý phân tử: Al13-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al13-neutral-doublet 
+>>> Đang xử lý phân tử: Al14-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 104 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al14-cation-doublet 
+>>> Đang xử lý phân tử: Al14-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 105 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al14-neutral-singlet 
+>>> Đang xử lý phân tử: Al15-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 119 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al15-cation-singlet 
+>>> Đang xử lý phân tử: Al15-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 120 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al15-neutral-doublet 
+>>> Đang xử lý phân tử: Al16-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al16-cation-doublet 
+>>> Đang xử lý phân tử: Al16-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al16-neutral-singlet 
+>>> Đang xử lý phân tử: Al17-anion-singlet
+>> charge=-1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al17-anion-singlet 
+>>> Đang xử lý phân tử: Al17-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al17-cation-singlet 
+>>> Đang xử lý phân tử: Al17-neutral-doublet
+>> charge=0, spin=1
+-bash: ./Submit.sh: Không có tập tin hoặc thư mục như vậy
+>>> Đang xử lý phân tử: Al10-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 54 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al10-cation-doublet 
+>>> Đang xử lý phân tử: Al10-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 55 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al10-neutral-singlet 
+>>> Đang xử lý phân tử: Al11-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 65 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al11-cation-singlet 
+>>> Đang xử lý phân tử: Al11-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 66 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al11-neutral-doublet 
+>>> Đang xử lý phân tử: Al12-cation-doublet-2
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-cation-doublet-2 
+>>> Đang xử lý phân tử: Al12-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-cation-doublet 
+>>> Đang xử lý phân tử: Al12-neutral-singlet-2
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-neutral-singlet-2 
+>>> Đang xử lý phân tử: Al12-neutral-singlet-3
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-neutral-singlet-3 
+>>> Đang xử lý phân tử: Al12-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al12-neutral-singlet 
+>>> Đang xử lý phân tử: Al13-anion-singlet
+>> charge=-1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al13-anion-singlet 
+>>> Đang xử lý phân tử: Al13-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al13-cation-singlet 
+>>> Đang xử lý phân tử: Al13-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al13-neutral-doublet 
+>>> Đang xử lý phân tử: Al14-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 104 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al14-cation-doublet 
+>>> Đang xử lý phân tử: Al14-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 105 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al14-neutral-singlet 
+>>> Đang xử lý phân tử: Al15-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 119 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al15-cation-singlet 
+>>> Đang xử lý phân tử: Al15-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 120 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al15-neutral-doublet 
+>>> Đang xử lý phân tử: Al16-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al16-cation-doublet 
+>>> Đang xử lý phân tử: Al16-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al16-neutral-singlet 
+>>> Đang xử lý phân tử: Al17-anion-singlet
+>> charge=-1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 31, in <module>
+    e_obmp2g = ob.kernel()
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 1389, in kernel
+    return kernel(self, mo_energy, mo_coeff, eris, with_t2, kernel)
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 197, in kernel
+    c0, c1_a, c1_b = first_BCH(mp, fock_hfa, fock_hfb, qov_a, qov_b, c0)
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 511, in first_BCH
+    c1_b[:,noccb:nmob] -= 2.* lib.einsum("aJP, aJB -> PB", numpy.dot(Qov_a.T,qog_b).reshape(nvira,noccb, nmob),t2i_bar_ab)
+  File "<__array_function__ internals>", line 6, in dot
+KeyboardInterrupt
+Done Al17-anion-singlet 
+>>> Đang xử lý phân tử: Al17-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 23, in <module>
+    a.kernel()
+  File "/share/installs/pyscf/pyscf/lib/misc.py", line 601, in aliased_fn
+    return getattr(self, fname)(*args, **kwargs)
+  File "/share/installs/pyscf/pyscf/scf/hf.py", line 1656, in scf
+    conv_check=self.conv_check, **kwargs)
+  File "/share/installs/pyscf/pyscf/scf/hf.py", line 170, in kernel
+    vhf = mf.get_veff(mol, dm, dm_last, vhf)
+  File "/share/installs/pyscf/pyscf/scf/uhf.py", line 789, in get_veff
+    vj, vk = self.get_jk(mol, ddm, hermi)
+  File "/share/installs/pyscf/pyscf/df/df_jk.py", line 125, in get_jk
+    self.direct_scf_tol, omega)
+  File "/share/installs/pyscf/pyscf/df/df.py", line 239, in get_jk
+    return df_jk.get_jk(self, dm, hermi, with_j, with_k, direct_scf_tol)
+  File "/share/installs/pyscf/pyscf/df/df_jk.py", line 292, in get_jk
+    vk[k] += lib.dot(buf1.reshape(-1,nao).T, buf2.reshape(-1,nao))
+  File "/share/installs/pyscf/pyscf/lib/numpy_helper.py", line 733, in dot
+    return ddot(a, b, alpha, c, beta)
+  File "/share/installs/pyscf/pyscf/lib/numpy_helper.py", line 694, in ddot
+    return _dgemm(trans_a, trans_b, m, n, k, a, b, c, alpha, beta)
+  File "/share/installs/pyscf/pyscf/lib/numpy_helper.py", line 815, in _dgemm
+    ctypes.c_double(alpha), ctypes.c_double(beta))
+KeyboardInterrupt
+Done Al17-cation-singlet 
+>>> Đang xử lý phân tử: Al17-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 23, in <module>
+    a.kernel()
+  File "/share/installs/pyscf/pyscf/lib/misc.py", line 601, in aliased_fn
+    return getattr(self, fname)(*args, **kwargs)
+  File "/share/installs/pyscf/pyscf/scf/hf.py", line 1656, in scf
+    conv_check=self.conv_check, **kwargs)
+  File "/share/installs/pyscf/pyscf/scf/hf.py", line 170, in kernel
+    vhf = mf.get_veff(mol, dm, dm_last, vhf)
+  File "/share/installs/pyscf/pyscf/scf/uhf.py", line 789, in get_veff
+    vj, vk = self.get_jk(mol, ddm, hermi)
+  File "/share/installs/pyscf/pyscf/df/df_jk.py", line 125, in get_jk
+    self.direct_scf_tol, omega)
+  File "/share/installs/pyscf/pyscf/df/df.py", line 239, in get_jk
+    return df_jk.get_jk(self, dm, hermi, with_j, with_k, direct_scf_tol)
+  File "/share/installs/pyscf/pyscf/df/df_jk.py", line 289, in get_jk
+    ctypes.c_int(naux), *rargs)
+KeyboardInterrupt
+Done Al17-neutral-doublet 
+>>> Đang xử lý phân tử: Al18-anion-doublet
+>> charge=-1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 172 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al18-anion-doublet 
+>>> Đang xử lý phân tử: Al18-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 170 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al18-cation-doublet 
+>>> Đang xử lý phân tử: Al18-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 171 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al18-neutral-singlet 
+>>> Đang xử lý phân tử: Al3-anion-singlet
+>> charge=-1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 7 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al3-anion-singlet 
+>>> Đang xử lý phân tử: Al3-anion-triplet
+>> charge=-1, spin=2
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 7 and spin 2 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al3-anion-triplet 
+>>> Đang xử lý phân tử: Al3-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 5 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al3-cation-singlet 
+>>> Đang xử lý phân tử: Al3-cation-triplet
+>> charge=1, spin=2
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 5 and spin 2 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al3-cation-triplet 
+>>> Đang xử lý phân tử: Al3-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 6 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al3-neutral-doublet 
+>>> Đang xử lý phân tử: Al3-neutral-quartet
+>> charge=0, spin=3
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 6 and spin 3 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al3-neutral-quartet 
+>>> Đang xử lý phân tử: Al4-anion-doublet
+>> charge=-1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al4-anion-doublet 
+>>> Đang xử lý phân tử: Al4-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al4-cation-doublet 
+>>> Đang xử lý phân tử: Al4-cation-quartet
+>> charge=1, spin=3
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al4-cation-quartet 
+>>> Đang xử lý phân tử: Al4-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al4-neutral-singlet 
+>>> Đang xử lý phân tử: Al4-neutral-triplet
+>> charge=0, spin=2
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al4-neutral-triplet 
+>>> Đang xử lý phân tử: Al5-anion-singlet
+>> charge=-1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al5-anion-singlet 
+>>> Đang xử lý phân tử: Al5-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al5-cation-singlet 
+>>> Đang xử lý phân tử: Al5-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al5-neutral-doublet 
+>>> Đang xử lý phân tử: Al6-anion-doublet-2
+>> charge=-1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 22 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al6-anion-doublet-2 
+>>> Đang xử lý phân tử: Al6-anion-doublet
+>> charge=-1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 22 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al6-anion-doublet 
+>>> Đang xử lý phân tử: Al6-cation-doublet-2
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 20 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al6-cation-doublet-2 
+>>> Đang xử lý phân tử: Al6-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 20 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al6-cation-doublet 
+>>> Đang xử lý phân tử: Al6-neutral-singlet-2
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 21 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al6-neutral-singlet-2 
+>>> Đang xử lý phân tử: Al6-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 21 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al6-neutral-singlet 
+>>> Đang xử lý phân tử: Al7-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 27 and spin 0 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al7-cation-singlet 
+>>> Đang xử lý phân tử: Al7-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 18, in <module>
+    mol.build()
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2289, in build
+    self.nelec
+  File "/share/installs/pyscf/pyscf/gto/mole.py", line 2067, in nelec
+    (ne, self.spin))
+RuntimeError: Electron number 28 and spin 1 are not consistent
+Note mol.spin = 2S = Nalpha - Nbeta, not 2S+1
+Done Al7-neutral-doublet 
+>>> Đang xử lý phân tử: Al8-cation-doublet
+>> charge=1, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al8-cation-doublet 
+>>> Đang xử lý phân tử: Al8-neutral-singlet-2
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al8-neutral-singlet-2 
+>>> Đang xử lý phân tử: Al8-neutral-singlet
+>> charge=0, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al8-neutral-singlet 
+>>> Đang xử lý phân tử: Al9-cation-singlet-2
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al9-cation-singlet-2 
+>>> Đang xử lý phân tử: Al9-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al9-cation-singlet 
+>>> Đang xử lý phân tử: Al9-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Done Al9-neutral-doublet 
+>>> Đang xử lý phân tử: Al-anion-triplet
+>> charge=-1, spin=2
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 31, in <module>
+    e_obmp2g = ob.kernel()
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 1389, in kernel
+    return kernel(self, mo_energy, mo_coeff, eris, with_t2, kernel)
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 187, in kernel
+    qov_a, qov_b = make_amp(mp) 
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 441, in make_amp
+    for istep, qov_a in enumerate(mp.loop_ao2mo(mo_coeff[0], nocca)):
+  File "/share/installs/pyscf/pyscf/mp/dfobmp2_slower.py", line 738, in loop_ao2mo
+    (max_memory*1e6/8-nocc*nvir**2*2)/(nocc*nvir))))
+ZeroDivisionError: float division by zero
+Done Al-anion-triplet 
+>>> Đang xử lý phân tử: Al-cation-singlet
+>> charge=1, spin=0
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 31, in <module>
+    e_obmp2g = ob.kernel()
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 1389, in kernel
+    return kernel(self, mo_energy, mo_coeff, eris, with_t2, kernel)
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 187, in kernel
+    qov_a, qov_b = make_amp(mp) 
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 441, in make_amp
+    for istep, qov_a in enumerate(mp.loop_ao2mo(mo_coeff[0], nocca)):
+  File "/share/installs/pyscf/pyscf/mp/dfobmp2_slower.py", line 738, in loop_ao2mo
+    (max_memory*1e6/8-nocc*nvir**2*2)/(nocc*nvir))))
+ZeroDivisionError: float division by zero
+Done Al-cation-singlet 
+>>> Đang xử lý phân tử: Al-neutral-doublet
+>> charge=0, spin=1
+/share/installs/pyscf/pyscf/dft/numint.py:33: UserWarning: XC functional libraries (libxc or XCfun) are not available.
+  warnings.warn('XC functional libraries (libxc or XCfun) are not available.')
+Traceback (most recent call last):
+  File "input.py", line 31, in <module>
+    e_obmp2g = ob.kernel()
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 1389, in kernel
+    return kernel(self, mo_energy, mo_coeff, eris, with_t2, kernel)
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 187, in kernel
+    qov_a, qov_b = make_amp(mp) 
+  File "/share/installs/pyscf/pyscf/mp/dfuobmp2_mom_conv.py", line 441, in make_amp
+    for istep, qov_a in enumerate(mp.loop_ao2mo(mo_coeff[0], nocca)):
+  File "/share/installs/pyscf/pyscf/mp/dfobmp2_slower.py", line 738, in loop_ao2mo
+    (max_memory*1e6/8-nocc*nvir**2*2)/(nocc*nvir))))
+ZeroDivisionError: float division by zero
+Done Al-neutral-doublet 

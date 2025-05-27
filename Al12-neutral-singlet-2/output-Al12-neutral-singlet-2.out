@@ -1,0 +1,1107 @@
+#INFO: **** input file is /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al12-neutral-singlet-2/input.py ****
+import numpy
+from pyscf import gto, scf, dft, mp, cc
+from pyscf.mp import uobmp2_mom_conv, dfuobmp2_mom_conv, uhf_mom
+from pyscf.mp import  mp2, ump2
+from pyscf.tools import molden
+import os
+from functools import reduce
+
+
+mol = gto.Mole()
+geom = os.environ.get('geom_txt')
+mol.atom = geom
+mol.basis = os.environ.get('basis', 'cc-pvdz')
+mol.unit = 'A'
+mol.charge = int(os.environ.get('charge', 0))
+mol.spin = int(os.environ.get('spin', 0))
+mol.verbose = 4
+mol.build()
+
+#################### Ground state using density fitting
+### Hartree-Fock
+a  = scf.UHF(mol).density_fit()
+a.kernel()
+
+### Ground state OBMP2 calculation
+ob = dfuobmp2_mom_conv.DFUOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 1
+ob.cos = 1
+e_obmp2g = ob.kernel()
+
+### Ground state O2BMP2 calculation
+ob = dfuobmp2_mom_conv.DFUOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 0                             
+ob.cos = 1.2                             
+e_o2bmp2g = ob.kernel()  
+
+#################### Ground state NOT using density fitting
+### Hartree-Fock
+a  = scf.UHF(mol)
+a.kernel()
+
+### Ground state OBMP2 calculation
+ob = uobmp2_mom_conv.UOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 1
+ob.cos = 1
+#e_obmp2g = ob.kernel()
+
+### Ground state O2BMP2 calculation
+ob = uobmp2_mom_conv.UOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 0
+ob.cos = 1.2   ## the cos can be vary ...                        	 
+#e_o2bmp2g = ob.kernel()
+
+
+## Results from density-fitting approximate with non-using density fitting 
+## check results between df and non-df with small molecules before running the important molecules
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Linux', node='comphys', release='3.10.0-1160.119.1.el7.x86_64', version='#1 SMP Tue Jun 4 14:43:51 UTC 2024', machine='x86_64', processor='x86_64')  Threads 8
+Python 3.7.9 (default, Dec  4 2023, 13:00:18) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+numpy 1.21.6  scipy 1.7.3
+Date: Sun May 25 17:47:53 2025
+PySCF version 1.7.0
+PySCF path  /share/installs/pyscf/pyscf
+GIT HEAD      ref: refs/heads/ob-mp2
+GIT ob-mp2 branch  f0fc63383ab6c719c0c91f5e07a6895c637b700d
+
+[CONFIG] conf_file None
+[INPUT] verbose = 4
+[INPUT] num. atoms = 12
+[INPUT] num. electrons = 78
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = A
+[INPUT]  1 H     -2.505950000000  -0.825961000000   1.295285000000 AA   -4.735559181854  -1.560840079572   2.447733903257 Bohr
+[INPUT]  2 He    -0.170286000000  -1.187940000000  -2.611489000000 AA   -0.321793902848  -2.244881252416  -4.934998987314 Bohr
+[INPUT]  3 Li    -0.170286000000  -1.187940000000   2.611489000000 AA   -0.321793902848  -2.244881252416   4.934998987314 Bohr
+[INPUT]  4 Be    -1.229494000000   1.471732000000   1.596256000000 AA   -2.323406931796   2.781170408758   3.016486664694 Bohr
+[INPUT]  5 B      2.138287000000  -1.380312000000  -1.326618000000 AA    4.040776805718  -2.608411646451  -2.506944691918 Bohr
+[INPUT]  6 C      2.138287000000  -1.380312000000   1.326618000000 AA    4.040776805718  -2.608411646451   2.506944691918 Bohr
+[INPUT]  7 N      1.257217000000   1.105424000000   2.343482000000 AA    2.375795809147   2.088948611521   4.428539157848 Bohr
+[INPUT]  8 O      1.046347000000   2.089606000000   0.000000000000 AA    1.977309261260   3.948783048248   0.000000000000 Bohr
+[INPUT]  9 F     -2.505950000000  -0.825961000000  -1.295285000000 AA   -4.735559181854  -1.560840079572  -2.447733903257 Bohr
+[INPUT] 10 Ne    -1.229494000000   1.471732000000  -1.596256000000 AA   -2.323406931796   2.781170408758  -3.016486664694 Bohr
+[INPUT] 11 Na     1.257217000000   1.105424000000  -2.343482000000 AA    2.375795809147   2.088948611521  -4.428539157848 Bohr
+[INPUT] 12 Mg    -0.025895000000  -0.455493000000   0.000000000000 AA   -0.048934457996  -0.860757021657   0.000000000000 Bohr
+
+nuclear repulsion = 430.197785375512
+number of shells = 36
+number of NR pGTOs = 360
+number of NR cGTOs = 60
+basis = sto-6g
+ecp = {}
+CPU time:         1.60
+
+
+******** <class 'pyscf.df.df_jk.density_fit.<locals>.DFHF'> ********
+method = DFHF-UHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al12-neutral-singlet-2/tmptp2b36t_
+max_memory 4000 MB (current use 60 MB)
+number electrons alpha = 39  beta = 39
+Set gradient conv threshold to 3.16228e-05
+******** <class 'pyscf.df.df.DF'> ********
+auxbasis = None
+max_memory = 4000
+_cderi_to_save = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al12-neutral-singlet-2/tmpmb6p8wcc
+Even tempered Gaussians are generated as DF auxbasis for  C Na N Ne Li H F He O B Mg Be
+init E= -797.700312641004
+  alpha nocc = 39  HOMO = -0.392385500522366  LUMO = -0.372051758205646
+  beta  nocc = 39  HOMO = -0.381369719206137  LUMO = -0.366416485391703
+cycle= 1 E= -797.958753224383  delta_E= -0.258  |g|= 0.996  |ddm|= 2.51
+  alpha nocc = 39  HOMO = 0.171337955178897  LUMO = 0.193177302028697
+  beta  nocc = 39  HOMO = 0.170738147710255  LUMO = 0.192698559836719
+cycle= 2 E= -771.392283957328  delta_E= 26.6  |g|= 3.39  |ddm|= 5.99
+  alpha nocc = 39  HOMO = 0.0924735290465297  LUMO = 0.101437998107711
+  beta  nocc = 39  HOMO = 0.0909765934453567  LUMO = 0.102867490571146
+cycle= 3 E= -788.535098778287  delta_E= -17.1  |g|= 2.25  |ddm|= 4.03
+  alpha nocc = 39  HOMO = 0.0131164860502009  LUMO = 0.0152295339802789
+  beta  nocc = 39  HOMO = 0.0113225637784446  LUMO = 0.0152723036737777
+cycle= 4 E= -798.870454425487  delta_E= -10.3  |g|= 0.946  |ddm|= 3.98
+  alpha nocc = 39  HOMO = 0.0908023664368699  LUMO = 0.117855632805205
+  beta  nocc = 39  HOMO = 0.0910985206846663  LUMO = 0.114931697541304
+cycle= 5 E= -793.163948058575  delta_E= 5.71  |g|= 1.83  |ddm|= 3.45
+  alpha nocc = 39  HOMO = 0.049759717510921  LUMO = 0.0539401568937628
+  beta  nocc = 39  HOMO = 0.0466857117622193  LUMO = 0.0495624388252453
+
+WARN: system HOMO 0.0466857117622193 >= system LUMO 0.0495624388252453
+
+cycle= 6 E= -799.552692896926  delta_E= -6.39  |g|= 0.898  |ddm|=  2.5
+  alpha nocc = 39  HOMO = -0.0320443852818369  LUMO = 0.05008607398266
+  beta  nocc = 39  HOMO = -0.0134324671348073  LUMO = 0.0448712315382772
+cycle= 7 E= -799.140358059133  delta_E= 0.412  |g|= 1.09  |ddm|= 0.869
+  alpha nocc = 39  HOMO = -0.0304669338485004  LUMO = 0.0474597650586605
+  beta  nocc = 39  HOMO = -0.0127898095471549  LUMO = 0.042408861581707
+cycle= 8 E= -799.185184390169  delta_E= -0.0448  |g|= 1.07  |ddm|= 0.0398
+  alpha nocc = 39  HOMO = 0.00485962141755856  LUMO = 0.0616014065148728
+  beta  nocc = 39  HOMO = 0.00979384737860599  LUMO = 0.0629130045338468
+cycle= 9 E= -799.705247681583  delta_E= -0.52  |g|= 0.811  |ddm|= 0.742
+  alpha nocc = 39  HOMO = -0.0720712294418714  LUMO = 0.131305986713447
+  beta  nocc = 39  HOMO = -0.076337826828408  LUMO = 0.129542037485564
+cycle= 10 E= -800.151082861877  delta_E= -0.446  |g|= 0.382  |ddm|= 0.99
+  alpha nocc = 39  HOMO = -0.00167205422708091  LUMO = 0.097595384779046
+  beta  nocc = 39  HOMO = 0.0109813619514176  LUMO = 0.100459788378084
+cycle= 11 E= -800.324074795201  delta_E= -0.173  |g|= 0.161  |ddm|= 0.602
+  alpha nocc = 39  HOMO = 0.0547719344214137  LUMO = 0.0991196901441675
+  beta  nocc = 39  HOMO = 0.0588022356509374  LUMO = 0.103420547455495
+cycle= 12 E= -800.398192569851  delta_E= -0.0741  |g|= 0.0914  |ddm|= 0.651
+  alpha nocc = 39  HOMO = -0.0350482263122632  LUMO = 0.127133925391973
+  beta  nocc = 39  HOMO = -0.0137331109378059  LUMO = 0.126272126962541
+cycle= 13 E= -800.427840822834  delta_E= -0.0296  |g|= 0.0756  |ddm|= 0.31
+  alpha nocc = 39  HOMO = -0.055513202624787  LUMO = 0.127551379298603
+  beta  nocc = 39  HOMO = -0.014597563933707  LUMO = 0.125778847613674
+cycle= 14 E= -800.450625480764  delta_E= -0.0228  |g|= 0.0794  |ddm|= 0.248
+  alpha nocc = 39  HOMO = -0.0583203194579283  LUMO = 0.128730155135229
+  beta  nocc = 39  HOMO = -0.0132108446881318  LUMO = 0.127145470740498
+cycle= 15 E= -800.452548585375  delta_E= -0.00192  |g|= 0.0809  |ddm|= 0.0247
+  alpha nocc = 39  HOMO = -0.0384428977282113  LUMO = 0.133686767127193
+  beta  nocc = 39  HOMO = -0.0232955109713403  LUMO = 0.13095155053833
+cycle= 16 E= -800.45455833993  delta_E= -0.00201  |g|= 0.0713  |ddm|= 0.19
+  alpha nocc = 39  HOMO = -0.0355021547678758  LUMO = 0.136175723384437
+  beta  nocc = 39  HOMO = -0.0352725480053949  LUMO = 0.134777109109091
+cycle= 17 E= -800.471682403471  delta_E= -0.0171  |g|= 0.0667  |ddm|= 0.219
+  alpha nocc = 39  HOMO = -0.0448473897110748  LUMO = 0.143264414146394
+  beta  nocc = 39  HOMO = -0.0480277609781964  LUMO = 0.142859749777857
+cycle= 18 E= -800.503575228297  delta_E= -0.0319  |g|= 0.0564  |ddm|= 0.416
+  alpha nocc = 39  HOMO = -0.0272495154961345  LUMO = 0.142439061140902
+  beta  nocc = 39  HOMO = -0.0384820704130743  LUMO = 0.135350160607379
+cycle= 19 E= -800.52089298698  delta_E= -0.0173  |g|= 0.0616  |ddm|= 0.301
+  alpha nocc = 39  HOMO = -0.0223468237136622  LUMO = 0.14235096953992
+  beta  nocc = 39  HOMO = -0.0344155865251115  LUMO = 0.133901169494787
+cycle= 20 E= -800.512708544491  delta_E= 0.00818  |g|= 0.0629  |ddm|= 0.126
+  alpha nocc = 39  HOMO = -0.0272083759233378  LUMO = 0.151390535498012
+  beta  nocc = 39  HOMO = -0.0388433292156867  LUMO = 0.146077262338889
+cycle= 21 E= -800.506390518217  delta_E= 0.00632  |g|= 0.0437  |ddm|= 0.361
+  alpha nocc = 39  HOMO = -0.0386178669061256  LUMO = 0.15454122665546
+  beta  nocc = 39  HOMO = -0.0499836428856808  LUMO = 0.142424083209405
+cycle= 22 E= -800.509728401511  delta_E= -0.00334  |g|= 0.029  |ddm|= 0.194
+  alpha nocc = 39  HOMO = -0.0377299110229409  LUMO = 0.154873937002151
+  beta  nocc = 39  HOMO = -0.0514880724915993  LUMO = 0.144423095959189
+cycle= 23 E= -800.512902701855  delta_E= -0.00317  |g|= 0.0254  |ddm|= 0.149
+  alpha nocc = 39  HOMO = -0.0379969969175847  LUMO = 0.155448707535678
+  beta  nocc = 39  HOMO = -0.0513702720992317  LUMO = 0.145426734405038
+cycle= 24 E= -800.514055777624  delta_E= -0.00115  |g|= 0.025  |ddm|= 0.0476
+  alpha nocc = 39  HOMO = -0.0354502674686628  LUMO = 0.156670734677984
+  beta  nocc = 39  HOMO = -0.0540535021829885  LUMO = 0.145555356144523
+cycle= 25 E= -800.514308989097  delta_E= -0.000253  |g|= 0.026  |ddm|= 0.0349
+  alpha nocc = 39  HOMO = -0.0361445018215298  LUMO = 0.15692276642159
+  beta  nocc = 39  HOMO = -0.0510437014799949  LUMO = 0.146601750609326
+cycle= 26 E= -800.513701130686  delta_E= 0.000608  |g|= 0.0243  |ddm|= 0.0434
+  alpha nocc = 39  HOMO = -0.0403529956576301  LUMO = 0.156412484450582
+  beta  nocc = 39  HOMO = -0.0513224664955125  LUMO = 0.147161336049783
+cycle= 27 E= -800.511657979799  delta_E= 0.00204  |g|= 0.0202  |ddm|= 0.0999
+  alpha nocc = 39  HOMO = -0.0422260928540129  LUMO = 0.152259486720348
+  beta  nocc = 39  HOMO = -0.0537010783002489  LUMO = 0.145827597786448
+cycle= 28 E= -800.513594602021  delta_E= -0.00194  |g|= 0.0177  |ddm|= 0.154
+  alpha nocc = 39  HOMO = -0.0414840639901356  LUMO = 0.153565166308072
+  beta  nocc = 39  HOMO = -0.0529988080174051  LUMO = 0.145791048777602
+cycle= 29 E= -800.515656489628  delta_E= -0.00206  |g|= 0.0167  |ddm|= 0.106
+  alpha nocc = 39  HOMO = -0.0411517606595757  LUMO = 0.15370495718158
+  beta  nocc = 39  HOMO = -0.0527387396035661  LUMO = 0.14516366005821
+cycle= 30 E= -800.516758806644  delta_E= -0.0011  |g|= 0.0171  |ddm|= 0.0522
+  alpha nocc = 39  HOMO = -0.0412071243383327  LUMO = 0.153163884399561
+  beta  nocc = 39  HOMO = -0.0524273018061764  LUMO = 0.145554996913954
+cycle= 31 E= -800.51628496801  delta_E= 0.000474  |g|= 0.0165  |ddm|= 0.0255
+  alpha nocc = 39  HOMO = -0.0424683105642419  LUMO = 0.150885734447794
+  beta  nocc = 39  HOMO = -0.0541974991156029  LUMO = 0.145983578884166
+cycle= 32 E= -800.515338074226  delta_E= 0.000947  |g|= 0.0143  |ddm|= 0.102
+  alpha nocc = 39  HOMO = -0.0419670100982715  LUMO = 0.150281772031917
+  beta  nocc = 39  HOMO = -0.0501446389161116  LUMO = 0.146401343442872
+cycle= 33 E= -800.517054388729  delta_E= -0.00172  |g|= 0.0137  |ddm|= 0.135
+  alpha nocc = 39  HOMO = -0.0426073195546697  LUMO = 0.149909252902151
+  beta  nocc = 39  HOMO = -0.048417544185321  LUMO = 0.146011280519548
+cycle= 34 E= -800.51735961251  delta_E= -0.000305  |g|= 0.0151  |ddm|= 0.0247
+  alpha nocc = 39  HOMO = -0.0368239756114964  LUMO = 0.148325257890223
+  beta  nocc = 39  HOMO = -0.0504790929434042  LUMO = 0.146579853933424
+cycle= 35 E= -800.516414478162  delta_E= 0.000945  |g|= 0.0109  |ddm|= 0.095
+  alpha nocc = 39  HOMO = -0.0374301291896198  LUMO = 0.149319287778769
+  beta  nocc = 39  HOMO = -0.0535986452500267  LUMO = 0.146919899009624
+cycle= 36 E= -800.516741445714  delta_E= -0.000327  |g|= 0.00974  |ddm|= 0.056
+  alpha nocc = 39  HOMO = -0.0383432072645124  LUMO = 0.149324260045088
+  beta  nocc = 39  HOMO = -0.0531751178099703  LUMO = 0.147387816358962
+cycle= 37 E= -800.517200653935  delta_E= -0.000459  |g|= 0.0102  |ddm|= 0.0391
+  alpha nocc = 39  HOMO = -0.0373120614333216  LUMO = 0.149281196817252
+  beta  nocc = 39  HOMO = -0.0540365838023221  LUMO = 0.147095682743697
+cycle= 38 E= -800.51685423508  delta_E= 0.000346  |g|= 0.00951  |ddm|= 0.0324
+  alpha nocc = 39  HOMO = -0.035927173167651  LUMO = 0.149253602370945
+  beta  nocc = 39  HOMO = -0.0548885162535533  LUMO = 0.14705097596831
+cycle= 39 E= -800.51710883132  delta_E= -0.000255  |g|= 0.00934  |ddm|= 0.0298
+  alpha nocc = 39  HOMO = -0.0357244226298792  LUMO = 0.149179265264238
+  beta  nocc = 39  HOMO = -0.0549669696506031  LUMO = 0.147058655253868
+cycle= 40 E= -800.517156280511  delta_E= -4.74e-05  |g|= 0.00943  |ddm|= 0.00623
+  alpha nocc = 39  HOMO = -0.0360089786128007  LUMO = 0.149599335488483
+  beta  nocc = 39  HOMO = -0.0549293643892809  LUMO = 0.147002460078956
+cycle= 41 E= -800.517166044804  delta_E= -9.76e-06  |g|= 0.00926  |ddm|= 0.0175
+  alpha nocc = 39  HOMO = -0.0362331824710457  LUMO = 0.1497205544725
+  beta  nocc = 39  HOMO = -0.0550729835188757  LUMO = 0.147037104553813
+cycle= 42 E= -800.517174082524  delta_E= -8.04e-06  |g|= 0.00925  |ddm|= 0.00872
+  alpha nocc = 39  HOMO = -0.0362595212341704  LUMO = 0.149701176111251
+  beta  nocc = 39  HOMO = -0.05497749471965  LUMO = 0.147020217361331
+cycle= 43 E= -800.517177708973  delta_E= -3.63e-06  |g|= 0.00925  |ddm|= 0.00179
+  alpha nocc = 39  HOMO = -0.0365227687512493  LUMO = 0.149780752097865
+  beta  nocc = 39  HOMO = -0.0549571785238081  LUMO = 0.147003592195956
+cycle= 44 E= -800.517189404195  delta_E= -1.17e-05  |g|= 0.00926  |ddm|= 0.00386
+  alpha nocc = 39  HOMO = -0.0366327437781242  LUMO = 0.149852460628667
+  beta  nocc = 39  HOMO = -0.0553862104215572  LUMO = 0.147038551431704
+cycle= 45 E= -800.517189886476  delta_E= -4.82e-07  |g|= 0.00922  |ddm|= 0.00661
+  alpha nocc = 39  HOMO = -0.0365649700477931  LUMO = 0.14985360915943
+  beta  nocc = 39  HOMO = -0.0547797630594724  LUMO = 0.147193538789322
+cycle= 46 E= -800.517564734052  delta_E= -0.000375  |g|= 0.00938  |ddm|= 0.0354
+  alpha nocc = 39  HOMO = -0.0353479858360506  LUMO = 0.149773238529801
+  beta  nocc = 39  HOMO = -0.05568855074736  LUMO = 0.146902340323526
+cycle= 47 E= -800.517412521085  delta_E= 0.000152  |g|= 0.00941  |ddm|= 0.0216
+  alpha nocc = 39  HOMO = -0.0357237210559333  LUMO = 0.14971427548007
+  beta  nocc = 39  HOMO = -0.0552963588151554  LUMO = 0.146926590614727
+cycle= 48 E= -800.517298304816  delta_E= 0.000114  |g|= 0.00926  |ddm|= 0.0119
+  alpha nocc = 39  HOMO = -0.0356394272801664  LUMO = 0.149555224305518
+  beta  nocc = 39  HOMO = -0.0552624181444727  LUMO = 0.146777640995549
+cycle= 49 E= -800.517237362173  delta_E= 6.09e-05  |g|= 0.00913  |ddm|= 0.0116
+  alpha nocc = 39  HOMO = -0.0356878766397327  LUMO = 0.149483414247056
+  beta  nocc = 39  HOMO = -0.0559785858805494  LUMO = 0.146485598557538
+cycle= 50 E= -800.517339791874  delta_E= -0.000102  |g|= 0.00912  |ddm|= 0.0187
+SCF not converged.
+SCF energy = -800.517339791874 after 50 cycles  <S^2> = 1.5405742  2S+1 = 2.6762468
+shift = 0
+thresh = 1e-05 
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 187.7 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 171.1 MiB
+
+========================
+iter = 0  energy = -800.822162 energy diff = 800.822162
+multiplicity <S^2> : Reference = 1.5405742 Response = 1.5401296 Projector = 1.539685
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.7 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.3 MiB
+
+========================
+iter = 1  energy = -800.846511 energy diff = 0.024348
+multiplicity <S^2> : Reference = 1.5057261 Response = 1.5057469 Projector = 1.5057678
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.1 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 172.8 MiB
+
+========================
+iter = 2  energy = -800.869536 energy diff = 0.023025
+multiplicity <S^2> : Reference = 1.4698048 Response = 1.4702488 Projector = 1.4706928
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.0 MiB
+
+========================
+iter = 3  energy = -800.895709 energy diff = 0.026173
+multiplicity <S^2> : Reference = 1.4389342 Response = 1.4391102 Projector = 1.4392862
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.6 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.8 MiB
+
+========================
+iter = 4  energy = -800.921895 energy diff = 0.026186
+multiplicity <S^2> : Reference = 1.4103964 Response = 1.4105202 Projector = 1.4106439
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.6 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.2 MiB
+
+========================
+iter = 5  energy = -800.957071 energy diff = 0.035176
+multiplicity <S^2> : Reference = 1.3918955 Response = 1.3918461 Projector = 1.3917967
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.6 MiB
+
+========================
+iter = 6  energy = -800.967207 energy diff = 0.010136
+multiplicity <S^2> : Reference = 1.4017222 Response = 1.4017826 Projector = 1.4018431
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.17 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.3 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.4 MiB
+
+========================
+iter = 7  energy = -800.985788 energy diff = 0.018581
+multiplicity <S^2> : Reference = 1.4243291 Response = 1.4242998 Projector = 1.4242706
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.18 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.3 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.5 MiB
+
+========================
+iter = 8  energy = -801.001272 energy diff = 0.015484
+multiplicity <S^2> : Reference = 1.5029795 Response = 1.5030089 Projector = 1.5030382
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.4 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.6 MiB
+
+========================
+iter = 9  energy = -801.004415 energy diff = 0.003143
+multiplicity <S^2> : Reference = 1.5481814 Response = 1.5482398 Projector = 1.5482981
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.23 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.6 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.9 MiB
+
+========================
+iter = 10  energy = -801.002270 energy diff = 0.002145
+multiplicity <S^2> : Reference = 1.5612426 Response = 1.5611707 Projector = 1.5610989
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.23 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.8 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.9 MiB
+
+========================
+iter = 11  energy = -801.010609 energy diff = 0.008339
+multiplicity <S^2> : Reference = 1.5023854 Response = 1.5023578 Projector = 1.5023302
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.22 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.4 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.7 MiB
+
+========================
+iter = 12  energy = -801.022905 energy diff = 0.012296
+multiplicity <S^2> : Reference = 1.5244767 Response = 1.5244539 Projector = 1.5244311
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.1 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.8 MiB
+
+========================
+iter = 13  energy = -801.033034 energy diff = 0.010129
+multiplicity <S^2> : Reference = 1.6021485 Response = 1.6023451 Projector = 1.6025416
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.22 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.8 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.9 MiB
+
+========================
+iter = 14  energy = -801.033331 energy diff = 0.000297
+multiplicity <S^2> : Reference = 1.637317 Response = 1.6373258 Projector = 1.6373346
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 194.8 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 175.0 MiB
+
+========================
+iter = 15  energy = -801.034679 energy diff = 0.001348
+multiplicity <S^2> : Reference = 1.7115694 Response = 1.7116942 Projector = 1.711819
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.4 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.2 MiB
+
+========================
+iter = 16  energy = -801.034570 energy diff = 0.000109
+multiplicity <S^2> : Reference = 1.767824 Response = 1.7677845 Projector = 1.767745
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.9 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.3 MiB
+
+========================
+iter = 17  energy = -801.034528 energy diff = 0.000042
+multiplicity <S^2> : Reference = 1.7641929 Response = 1.7641544 Projector = 1.7641159
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.4 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.8 MiB
+
+========================
+iter = 18  energy = -801.034302 energy diff = 0.000226
+multiplicity <S^2> : Reference = 1.736576 Response = 1.7365123 Projector = 1.7364486
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.18 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.9 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.1 MiB
+
+========================
+iter = 19  energy = -801.034318 energy diff = 0.000016
+multiplicity <S^2> : Reference = 1.7326569 Response = 1.7326284 Projector = 1.7325999
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.6 MiB
+
+========================
+iter = 20  energy = -801.034188 energy diff = 0.000129
+multiplicity <S^2> : Reference = 1.5961943 Response = 1.5963049 Projector = 1.5964155
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 200.6 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 175.9 MiB
+
+========================
+iter = 21  energy = -801.035227 energy diff = 0.001039
+multiplicity <S^2> : Reference = 1.5475456 Response = 1.5477591 Projector = 1.5479726
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 196.9 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.3 MiB
+
+========================
+iter = 22  energy = -801.034818 energy diff = 0.000409
+multiplicity <S^2> : Reference = 1.5150985 Response = 1.5151039 Projector = 1.5151093
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.0 MiB
+
+========================
+iter = 23  energy = -801.033410 energy diff = 0.001409
+multiplicity <S^2> : Reference = 1.5176262 Response = 1.517744 Projector = 1.5178618
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 197.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.2 MiB
+
+========================
+iter = 24  energy = -801.033414 energy diff = 0.000004
+multiplicity <S^2> : Reference = 1.5389339 Response = 1.539042 Projector = 1.5391502
+
+UOB-MP2 has converged
+UOB-MP2 energy =  -801.0334137482603
+shift = 0
+thresh = 1e-05 
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 172.5 MiB
+
+========================
+iter = 0  energy = -800.770117 energy diff = 800.770117
+multiplicity <S^2> : Reference = 1.5405742 Response = 1.5401296 Projector = 1.539685
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.4 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.2 MiB
+
+========================
+iter = 1  energy = -800.785941 energy diff = 0.015824
+multiplicity <S^2> : Reference = 1.497547 Response = 1.4981554 Projector = 1.4987638
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.1 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.2 MiB
+
+========================
+iter = 2  energy = -800.810486 energy diff = 0.024544
+multiplicity <S^2> : Reference = 1.4534725 Response = 1.4532975 Projector = 1.4531225
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.22 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 190.9 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.8 MiB
+
+========================
+iter = 3  energy = -800.823106 energy diff = 0.012620
+multiplicity <S^2> : Reference = 1.4231191 Response = 1.4233058 Projector = 1.4234926
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.22 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.0 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.0 MiB
+
+========================
+iter = 4  energy = -800.834067 energy diff = 0.010961
+multiplicity <S^2> : Reference = 1.3885916 Response = 1.3886287 Projector = 1.3886658
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.1 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.1 MiB
+
+========================
+iter = 5  energy = -800.850328 energy diff = 0.016260
+multiplicity <S^2> : Reference = 1.3635571 Response = 1.3631667 Projector = 1.3627764
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.22 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.0 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.3 MiB
+
+========================
+iter = 6  energy = -800.856206 energy diff = 0.005879
+multiplicity <S^2> : Reference = 1.3895738 Response = 1.3892537 Projector = 1.3889337
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 190.9 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.3 MiB
+
+========================
+iter = 7  energy = -800.860640 energy diff = 0.004434
+multiplicity <S^2> : Reference = 1.5086015 Response = 1.5090973 Projector = 1.5095931
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.23 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.0 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.3 MiB
+
+========================
+iter = 8  energy = -800.860728 energy diff = 0.000088
+multiplicity <S^2> : Reference = 1.5959422 Response = 1.5955399 Projector = 1.5951377
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.1 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 173.9 MiB
+
+========================
+iter = 9  energy = -800.861564 energy diff = 0.000836
+multiplicity <S^2> : Reference = 1.4360981 Response = 1.4360037 Projector = 1.4359093
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.3 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.1 MiB
+
+========================
+iter = 10  energy = -800.863332 energy diff = 0.001768
+multiplicity <S^2> : Reference = 1.4116171 Response = 1.4116112 Projector = 1.4116053
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.23 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.1 MiB
+
+========================
+iter = 11  energy = -800.869821 energy diff = 0.006488
+multiplicity <S^2> : Reference = 1.411853 Response = 1.4118206 Projector = 1.4117882
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 191.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.1 MiB
+
+========================
+iter = 12  energy = -800.882738 energy diff = 0.012917
+multiplicity <S^2> : Reference = 1.4772569 Response = 1.4771416 Projector = 1.4770264
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.18 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 191.1 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 174.1 MiB
+
+========================
+iter = 13  energy = -800.885614 energy diff = 0.002876
+multiplicity <S^2> : Reference = 1.5246115 Response = 1.5245747 Projector = 1.524538
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.9 MiB
+
+========================
+iter = 14  energy = -800.885689 energy diff = 0.000075
+multiplicity <S^2> : Reference = 1.5259946 Response = 1.5259588 Projector = 1.525923
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.3 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.3 MiB
+
+========================
+iter = 15  energy = -800.879368 energy diff = 0.006321
+multiplicity <S^2> : Reference = 1.4298638 Response = 1.4298568 Projector = 1.4298499
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.22 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.3 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.1 MiB
+
+========================
+iter = 16  energy = -800.875970 energy diff = 0.003398
+multiplicity <S^2> : Reference = 1.3581239 Response = 1.3580581 Projector = 1.3579923
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.24 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 200.4 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.6 MiB
+
+========================
+iter = 17  energy = -800.878016 energy diff = 0.002046
+multiplicity <S^2> : Reference = 1.3723179 Response = 1.3723376 Projector = 1.3723572
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.3 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.1 MiB
+
+========================
+iter = 18  energy = -800.881169 energy diff = 0.003154
+multiplicity <S^2> : Reference = 1.4539079 Response = 1.4538245 Projector = 1.453741
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 199.9 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.0 MiB
+
+========================
+iter = 19  energy = -800.885732 energy diff = 0.004562
+multiplicity <S^2> : Reference = 1.5289023 Response = 1.5285739 Projector = 1.5282455
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 175.9 MiB
+
+========================
+iter = 20  energy = -800.887739 energy diff = 0.002007
+multiplicity <S^2> : Reference = 1.5633617 Response = 1.5631603 Projector = 1.5629588
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 175.7 MiB
+
+========================
+iter = 21  energy = -800.886959 energy diff = 0.000780
+multiplicity <S^2> : Reference = 1.5675281 Response = 1.5673517 Projector = 1.5671754
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 175.7 MiB
+
+========================
+iter = 22  energy = -800.886919 energy diff = 0.000040
+multiplicity <S^2> : Reference = 1.5661978 Response = 1.566022 Projector = 1.5658461
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.19 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 176.3 MiB
+
+========================
+iter = 23  energy = -800.888652 energy diff = 0.001733
+multiplicity <S^2> : Reference = 1.6067261 Response = 1.6065612 Projector = 1.6063964
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 197.2 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.0 MiB
+
+========================
+iter = 24  energy = -800.888476 energy diff = 0.000176
+multiplicity <S^2> : Reference = 1.6051238 Response = 1.6049595 Projector = 1.6047952
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.20 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.0 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 177.0 MiB
+
+========================
+iter = 25  energy = -800.888948 energy diff = 0.000472
+multiplicity <S^2> : Reference = 1.6138882 Response = 1.613879 Projector = 1.6138699
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.23 sec, wall time      0.02 sec
+shape (918, 1260)
+1st memory: 197.0 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 175.9 MiB
+
+========================
+iter = 26  energy = -800.888929 energy diff = 0.000019
+multiplicity <S^2> : Reference = 1.6120377 Response = 1.6120296 Projector = 1.6120216
+eri1 (918, 1830)
+eri1 (918, 1830)
+    CPU time for making amplitude: integral transform      0.21 sec, wall time      0.01 sec
+shape (918, 1260)
+1st memory: 200.4 MiB
+eri1 (918, 1830)
+eri1 (918, 1830)
+2nd memory: 175.8 MiB
+
+========================
+iter = 27  energy = -800.888930 energy diff = 0.000001
+multiplicity <S^2> : Reference = 1.6116021 Response = 1.6115951 Projector = 1.611588
+
+UOB-MP2 has converged
+UOB-MP2 energy =  -800.8889299513407
+
+
+******** <class 'pyscf.scf.uhf.UHF'> ********
+method = UHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al12-neutral-singlet-2/tmplsccd8ux
+max_memory 4000 MB (current use 175 MB)
+number electrons alpha = 39  beta = 39
+Set gradient conv threshold to 3.16228e-05
+init E= -797.700934649515
+  alpha nocc = 39  HOMO = -0.392441113108375  LUMO = -0.372128432603762
+  beta  nocc = 39  HOMO = -0.381441630395584  LUMO = -0.36649303176874
+cycle= 1 E= -797.9601925616  delta_E= -0.259  |g|= 0.995  |ddm|= 2.51
+  alpha nocc = 39  HOMO = 0.171330100240211  LUMO = 0.193041913347633
+  beta  nocc = 39  HOMO = 0.170704570136215  LUMO = 0.192612550622182
+cycle= 2 E= -771.361918219254  delta_E= 26.6  |g|= 3.39  |ddm|= 5.99
+  alpha nocc = 39  HOMO = 0.0925379393151462  LUMO = 0.101529054505031
+  beta  nocc = 39  HOMO = 0.0909612443528514  LUMO = 0.102947933673536
+cycle= 3 E= -788.60309609396  delta_E= -17.2  |g|= 2.25  |ddm|= 4.04
+  alpha nocc = 39  HOMO = 0.012792989520666  LUMO = 0.0147317000798636
+  beta  nocc = 39  HOMO = 0.0107750315193641  LUMO = 0.0147814777446571
+cycle= 4 E= -798.894060261743  delta_E= -10.3  |g|= 0.943  |ddm|= 3.97
+  alpha nocc = 39  HOMO = 0.0906355637944492  LUMO = 0.117906922786294
+  beta  nocc = 39  HOMO = 0.0906882063465602  LUMO = 0.114856266133985
+cycle= 5 E= -793.139858920584  delta_E= 5.75  |g|= 1.83  |ddm|= 3.44
+  alpha nocc = 39  HOMO = 0.0501888096381817  LUMO = 0.0543758821395096
+  beta  nocc = 39  HOMO = 0.0470039672353843  LUMO = 0.0499080849127766
+
+WARN: system HOMO 0.0470039672353843 >= system LUMO 0.0499080849127766
+
+cycle= 6 E= -799.532861707954  delta_E= -6.39  |g|= 0.915  |ddm|= 2.49
+  alpha nocc = 39  HOMO = -0.0343485267897992  LUMO = 0.0518016979254922
+  beta  nocc = 39  HOMO = -0.012036587555807  LUMO = 0.0467978136223876
+cycle= 7 E= -799.118245947193  delta_E= 0.415  |g|=  1.1  |ddm|= 0.859
+  alpha nocc = 39  HOMO = -0.0327612808453938  LUMO = 0.0483160630128193
+  beta  nocc = 39  HOMO = -0.0114742646371774  LUMO = 0.0435036947109099
+cycle= 8 E= -799.18010144351  delta_E= -0.0619  |g|= 1.08  |ddm|= 0.0546
+  alpha nocc = 39  HOMO = 0.00765034433843952  LUMO = 0.0618844853158104
+  beta  nocc = 39  HOMO = 0.0127762366801098  LUMO = 0.0632636168307811
+cycle= 9 E= -799.675830740633  delta_E= -0.496  |g|= 0.837  |ddm|= 0.728
+  alpha nocc = 39  HOMO = -0.0708221700487218  LUMO = 0.131284640423696
+  beta  nocc = 39  HOMO = -0.0694799328080163  LUMO = 0.129171423142657
+cycle= 10 E= -800.133057135055  delta_E= -0.457  |g|= 0.406  |ddm|= 0.995
+  alpha nocc = 39  HOMO = -0.00670032386806041  LUMO = 0.0971146618566395
+  beta  nocc = 39  HOMO = 0.00965479168343744  LUMO = 0.100102111330474
+cycle= 11 E= -800.324746744628  delta_E= -0.192  |g|= 0.165  |ddm|= 0.624
+  alpha nocc = 39  HOMO = 0.0570863060501036  LUMO = 0.0994352226241869
+  beta  nocc = 39  HOMO = 0.0615398465609506  LUMO = 0.103954469840088
+cycle= 12 E= -800.403994606221  delta_E= -0.0792  |g|= 0.0939  |ddm|= 0.674
+  alpha nocc = 39  HOMO = -0.0355470895828789  LUMO = 0.126819771740337
+  beta  nocc = 39  HOMO = -0.0145055350687807  LUMO = 0.125794195126485
+cycle= 13 E= -800.434893183526  delta_E= -0.0309  |g|= 0.0773  |ddm|= 0.313
+  alpha nocc = 39  HOMO = -0.0584627750104247  LUMO = 0.127392171264069
+  beta  nocc = 39  HOMO = -0.0156240421848336  LUMO = 0.125770971964747
+cycle= 14 E= -800.460869058031  delta_E= -0.026  |g|= 0.0795  |ddm|= 0.279
+  alpha nocc = 39  HOMO = -0.0685275738858433  LUMO = 0.130410074467348
+  beta  nocc = 39  HOMO = -0.00846235828638231  LUMO = 0.128907325722491
+cycle= 15 E= -800.470259684765  delta_E= -0.00939  |g|= 0.0861  |ddm|= 0.108
+  alpha nocc = 39  HOMO = -0.0330523706998308  LUMO = 0.135169134847814
+  beta  nocc = 39  HOMO = -0.0199693534693368  LUMO = 0.132019755042884
+cycle= 16 E= -800.469315407712  delta_E= 0.000944  |g|= 0.0706  |ddm|= 0.278
+  alpha nocc = 39  HOMO = -0.0416901306169034  LUMO = 0.138975207666475
+  beta  nocc = 39  HOMO = -0.0337444959348985  LUMO = 0.139349742748244
+cycle= 17 E= -800.484427773561  delta_E= -0.0151  |g|= 0.0616  |ddm|= 0.21
+  alpha nocc = 39  HOMO = -0.0582758686534128  LUMO = 0.147100858528322
+  beta  nocc = 39  HOMO = -0.0503269948930914  LUMO = 0.145733975655508
+cycle= 18 E= -800.515970661066  delta_E= -0.0315  |g|= 0.0502  |ddm|= 0.467
+  alpha nocc = 39  HOMO = -0.040061017197776  LUMO = 0.143897154847657
+  beta  nocc = 39  HOMO = -0.0436259282640703  LUMO = 0.137759387333487
+cycle= 19 E= -800.52510455861  delta_E= -0.00913  |g|= 0.0538  |ddm|= 0.21
+  alpha nocc = 39  HOMO = -0.0375354426379757  LUMO = 0.1410964309287
+  beta  nocc = 39  HOMO = -0.0402871588851568  LUMO = 0.135954322539849
+cycle= 20 E= -800.51175416258  delta_E= 0.0134  |g|= 0.0499  |ddm|= 0.218
+  alpha nocc = 39  HOMO = -0.0285289561952541  LUMO = 0.153572695105751
+  beta  nocc = 39  HOMO = -0.0413349237204451  LUMO = 0.147968881353567
+cycle= 21 E= -800.506866943904  delta_E= 0.00489  |g|= 0.0336  |ddm|= 0.439
+  alpha nocc = 39  HOMO = -0.0387514529900874  LUMO = 0.156418369060682
+  beta  nocc = 39  HOMO = -0.0526303826721213  LUMO = 0.146442034960076
+cycle= 22 E= -800.5107113466  delta_E= -0.00384  |g|= 0.023  |ddm|= 0.14
+  alpha nocc = 39  HOMO = -0.0430105138298734  LUMO = 0.151024390125277
+  beta  nocc = 39  HOMO = -0.0515638146234465  LUMO = 0.142633037812473
+cycle= 23 E= -800.514859475471  delta_E= -0.00415  |g|= 0.0236  |ddm|= 0.172
+  alpha nocc = 39  HOMO = -0.0427002765782164  LUMO = 0.152591547493596
+  beta  nocc = 39  HOMO = -0.0510011976089579  LUMO = 0.143361119805135
+cycle= 24 E= -800.516031800089  delta_E= -0.00117  |g|= 0.023  |ddm|= 0.0434
+  alpha nocc = 39  HOMO = -0.0371060153514647  LUMO = 0.155398432218834
+  beta  nocc = 39  HOMO = -0.0534144783056049  LUMO = 0.145458713059118
+cycle= 25 E= -800.515777665925  delta_E= 0.000254  |g|= 0.0226  |ddm|= 0.0555
+  alpha nocc = 39  HOMO = -0.0390192845871918  LUMO = 0.155885405639461
+  beta  nocc = 39  HOMO = -0.049841746713545  LUMO = 0.145911965524621
+cycle= 26 E= -800.515463669389  delta_E= 0.000314  |g|= 0.0213  |ddm|= 0.0346
+  alpha nocc = 39  HOMO = -0.0426728291383214  LUMO = 0.15517240327477
+  beta  nocc = 39  HOMO = -0.050233798750301  LUMO = 0.147375205406938
+cycle= 27 E= -800.514696511098  delta_E= 0.000767  |g|= 0.0197  |ddm|= 0.0509
+  alpha nocc = 39  HOMO = -0.0429459485480841  LUMO = 0.153557865998393
+  beta  nocc = 39  HOMO = -0.0522748900149338  LUMO = 0.145476740653877
+cycle= 28 E= -800.515197930995  delta_E= -0.000501  |g|= 0.0174  |ddm|= 0.095
+  alpha nocc = 39  HOMO = -0.0421465037206865  LUMO = 0.152212352136817
+  beta  nocc = 39  HOMO = -0.0529948165248949  LUMO = 0.144495183513519
+cycle= 29 E= -800.517055871492  delta_E= -0.00186  |g|= 0.0158  |ddm|= 0.152
+  alpha nocc = 39  HOMO = -0.0422225989996826  LUMO = 0.152028177939912
+  beta  nocc = 39  HOMO = -0.0540016600385121  LUMO = 0.143856295187912
+cycle= 30 E= -800.517934972131  delta_E= -0.000879  |g|= 0.0163  |ddm|= 0.0449
+  alpha nocc = 39  HOMO = -0.0432559409162724  LUMO = 0.150972057005929
+  beta  nocc = 39  HOMO = -0.054909508183684  LUMO = 0.144331898350245
+cycle= 31 E= -800.517558786433  delta_E= 0.000376  |g|= 0.015  |ddm|= 0.0433
+  alpha nocc = 39  HOMO = -0.0409669931920879  LUMO = 0.150265737799876
+  beta  nocc = 39  HOMO = -0.0543082492379171  LUMO = 0.145161018205688
+cycle= 32 E= -800.517004959023  delta_E= 0.000554  |g|= 0.0116  |ddm|= 0.124
+  alpha nocc = 39  HOMO = -0.0384752751785781  LUMO = 0.148624413539196
+  beta  nocc = 39  HOMO = -0.0521070150360202  LUMO = 0.145109879415762
+cycle= 33 E= -800.517552084058  delta_E= -0.000547  |g|= 0.0106  |ddm|= 0.0762
+  alpha nocc = 39  HOMO = -0.0415288578864107  LUMO = 0.149102729080836
+  beta  nocc = 39  HOMO = -0.0511012766307266  LUMO = 0.146084339141732
+cycle= 34 E= -800.51810637816  delta_E= -0.000554  |g|= 0.0113  |ddm|= 0.0547
+  alpha nocc = 39  HOMO = -0.0414225620373454  LUMO = 0.149106618962608
+  beta  nocc = 39  HOMO = -0.0514738396800681  LUMO = 0.146124960086002
+cycle= 35 E= -800.518108572583  delta_E= -2.19e-06  |g|= 0.0112  |ddm|= 0.00389
+  alpha nocc = 39  HOMO = -0.0394409372849717  LUMO = 0.149270911679796
+  beta  nocc = 39  HOMO = -0.0528790365419562  LUMO = 0.145910792787401
+cycle= 36 E= -800.518445549924  delta_E= -0.000337  |g|= 0.0105  |ddm|= 0.0399
+  alpha nocc = 39  HOMO = -0.0393848651203131  LUMO = 0.149333399361977
+  beta  nocc = 39  HOMO = -0.0532046357700001  LUMO = 0.145768405885539
+cycle= 37 E= -800.518427694997  delta_E= 1.79e-05  |g|= 0.0106  |ddm|= 0.0162
+  alpha nocc = 39  HOMO = -0.0393658158876214  LUMO = 0.149152661914253
+  beta  nocc = 39  HOMO = -0.0527781071859519  LUMO = 0.145878267446542
+cycle= 38 E= -800.518487760442  delta_E= -6.01e-05  |g|= 0.0106  |ddm|= 0.02
+  alpha nocc = 39  HOMO = -0.039526554748312  LUMO = 0.148953117499683
+  beta  nocc = 39  HOMO = -0.0523239953872633  LUMO = 0.146133088696601
+cycle= 39 E= -800.518211271481  delta_E= 0.000276  |g|= 0.0106  |ddm|= 0.0367
+  alpha nocc = 39  HOMO = -0.0394737488698842  LUMO = 0.148957243854562
+  beta  nocc = 39  HOMO = -0.0523116328692854  LUMO = 0.146069664427402
+cycle= 40 E= -800.518218111064  delta_E= -6.84e-06  |g|= 0.0105  |ddm|= 0.00419
+  alpha nocc = 39  HOMO = -0.0395751330476541  LUMO = 0.149067261473889
+  beta  nocc = 39  HOMO = -0.0531498252746058  LUMO = 0.14581143171229
+cycle= 41 E= -800.518283688958  delta_E= -6.56e-05  |g|= 0.0101  |ddm|= 0.0419
+  alpha nocc = 39  HOMO = -0.0391556417370922  LUMO = 0.149011400872953
+  beta  nocc = 39  HOMO = -0.0518396542573106  LUMO = 0.145887161496717
+cycle= 42 E= -800.518623263033  delta_E= -0.00034  |g|= 0.0105  |ddm|= 0.0287
+  alpha nocc = 39  HOMO = -0.0373809014145855  LUMO = 0.14836589835552
+  beta  nocc = 39  HOMO = -0.05287168046018  LUMO = 0.145680048700527
+cycle= 43 E= -800.518042072316  delta_E= 0.000581  |g|= 0.00956  |ddm|= 0.0483
+  alpha nocc = 39  HOMO = -0.0364839445373426  LUMO = 0.148725677216802
+  beta  nocc = 39  HOMO = -0.0557009643239326  LUMO = 0.145869688840838
+cycle= 44 E= -800.517785773641  delta_E= 0.000256  |g|= 0.00914  |ddm|= 0.0343
+  alpha nocc = 39  HOMO = -0.0358192918962973  LUMO = 0.148682877789012
+  beta  nocc = 39  HOMO = -0.0558186830213769  LUMO = 0.146004390985924
+cycle= 45 E= -800.517981411498  delta_E= -0.000196  |g|= 0.00939  |ddm|= 0.0171
+  alpha nocc = 39  HOMO = -0.0366410690218502  LUMO = 0.148572299845955
+  beta  nocc = 39  HOMO = -0.054525211820368  LUMO = 0.145874971304589
+cycle= 46 E= -800.517736542579  delta_E= 0.000245  |g|= 0.00858  |ddm|= 0.0433
+  alpha nocc = 39  HOMO = -0.0359395158431376  LUMO = 0.148126243820855
+  beta  nocc = 39  HOMO = -0.0532646404418652  LUMO = 0.146138399616258
+cycle= 47 E= -800.517917500641  delta_E= -0.000181  |g|= 0.00847  |ddm|= 0.0277
+  alpha nocc = 39  HOMO = -0.0365064938897771  LUMO = 0.148148013872698
+  beta  nocc = 39  HOMO = -0.0531986875967617  LUMO = 0.146297564626302
+cycle= 48 E= -800.51803050109  delta_E= -0.000113  |g|= 0.00857  |ddm|= 0.0149
+  alpha nocc = 39  HOMO = -0.036152151413886  LUMO = 0.147856261512399
+  beta  nocc = 39  HOMO = -0.0534441293816771  LUMO = 0.145962337545748
+cycle= 49 E= -800.517914359947  delta_E= 0.000116  |g|= 0.00817  |ddm|= 0.027
+  alpha nocc = 39  HOMO = -0.0349572781016004  LUMO = 0.14697477368364
+  beta  nocc = 39  HOMO = -0.0532134939814306  LUMO = 0.145598324630551
+cycle= 50 E= -800.518197005776  delta_E= -0.000283  |g|= 0.00749  |ddm|= 0.0636
+SCF not converged.
+SCF energy = -800.518197005776 after 50 cycles  <S^2> = 1.5639697  2S+1 = 2.6936739
