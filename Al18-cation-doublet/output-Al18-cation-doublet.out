@@ -1,0 +1,175 @@
+#INFO: **** input file is /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al18-cation-doublet/input.py ****
+import numpy
+from pyscf import gto, scf, dft, mp, cc
+from pyscf.mp import uobmp2_mom_conv, dfuobmp2_mom_conv, uhf_mom
+from pyscf.mp import  mp2, ump2
+from pyscf.tools import molden
+import os
+from functools import reduce
+
+
+mol = gto.Mole()
+geom = os.environ.get('geom_txt')
+mol.atom = geom
+mol.basis = os.environ.get('basis', 'cc-pvdz')
+mol.unit = 'A'
+mol.charge = int(os.environ.get('charge', 0))
+mol.spin = int(os.environ.get('spin', 0))
+mol.verbose = 4
+mol.build()
+
+#################### Ground state using density fitting
+### Hartree-Fock
+a  = scf.UHF(mol).density_fit()
+a.kernel()
+
+### Ground state OBMP2 calculation
+ob = dfuobmp2_mom_conv.DFUOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 1
+ob.cos = 1
+e_obmp2g = ob.kernel()
+
+### Ground state O2BMP2 calculation
+ob = dfuobmp2_mom_conv.DFUOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 0                             
+ob.cos = 1.2                             
+e_o2bmp2g = ob.kernel()  
+
+#################### Ground state NOT using density fitting
+### Hartree-Fock
+a  = scf.UHF(mol)
+a.kernel()
+
+### Ground state OBMP2 calculation
+ob = uobmp2_mom_conv.UOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 1
+ob.cos = 1
+#e_obmp2g = ob.kernel()
+
+### Ground state O2BMP2 calculation
+ob = uobmp2_mom_conv.UOBMP2(a)
+ob.second_order = True
+ob.thresh = 10e-6
+ob.css = 0
+ob.cos = 1.2   ## the cos can be vary ...                        	 
+#e_o2bmp2g = ob.kernel()
+
+
+## Results from density-fitting approximate with non-using density fitting 
+## check results between df and non-df with small molecules before running the important molecules
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Linux', node='comphys', release='3.10.0-1160.119.1.el7.x86_64', version='#1 SMP Tue Jun 4 14:43:51 UTC 2024', machine='x86_64', processor='x86_64')  Threads 8
+Python 3.7.9 (default, Dec  4 2023, 13:00:18) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+numpy 1.21.6  scipy 1.7.3
+Date: Tue May 27 22:40:30 2025
+PySCF version 1.7.0
+PySCF path  /share/installs/pyscf/pyscf
+GIT HEAD      ref: refs/heads/ob-mp2
+GIT ob-mp2 branch  f0fc63383ab6c719c0c91f5e07a6895c637b700d
+
+[CONFIG] conf_file None
+[INPUT] verbose = 4
+[INPUT] num. atoms = 18
+[INPUT] num. electrons = 233
+[INPUT] charge = 1
+[INPUT] spin (= nelec alpha-beta = 2S) = 1
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = A
+[INPUT]  1 Al     1.658800000000   2.288300000000  -0.134593000000 AA    3.134677695429   4.324260290842  -0.254343908284 Bohr
+[INPUT]  2 Al     2.640076000000   0.036629000000   1.304078000000 AA    4.989020588037   0.069218778217   2.464350265071 Bohr
+[INPUT]  3 Al    -1.058511000000   2.373399000000   0.290778000000 AA   -2.000295889839   4.485074094317   0.549490783049 Bohr
+[INPUT]  4 Al     1.667158000000  -2.285794000000  -0.003272000000 AA    3.150472026378  -4.319524637174  -0.006183183880 Bohr
+[INPUT]  5 Al     0.632314000000  -1.337375000000   2.423248000000 AA    1.194900284728  -2.527272475840   4.579275051900 Bohr
+[INPUT]  6 Al    -0.026680000000   1.426812000000  -2.183872000000 AA   -0.050417893003   2.696283911243  -4.126919971106 Bohr
+[INPUT]  7 Al     0.634787000000   1.477844000000   2.339654000000 AA    1.199573577434   2.792720414832   4.421305286243 Bohr
+[INPUT]  8 Al     2.149260000000  -0.046712000000  -1.762669000000 AA    4.061512770483  -0.088272886731  -3.330961658261 Bohr
+[INPUT]  9 Al    -2.144177000000  -0.050926000000  -1.534678000000 AA   -4.051907292592  -0.096236192620  -2.900121109395 Bohr
+[INPUT] 10 Al    -1.049361000000  -2.355502000000   0.421321000000 AA   -1.983004895800  -4.451253665865   0.796181300528 Bohr
+[INPUT] 11 Al    -0.019617000000  -1.548146000000  -2.101169000000 AA   -0.037070757386  -2.925571940841  -3.970633951426 Bohr
+[INPUT] 12 Al    -1.646756000000   0.065922000000   2.130927000000 AA   -3.111917833984   0.124574525584   4.026868421441 Bohr
+[INPUT] 13 Al     4.247612000000   1.283869000000  -0.557917000000 AA    8.026823363416   2.426160789819  -1.054310330239 Bohr
+[INPUT] 14 Al    -3.535541000000  -1.310805000000   0.609066000000 AA   -6.681204192171  -2.477062452711   1.150967931784 Bohr
+[INPUT] 15 Al     4.259165000000  -1.314145000000  -0.487199000000 AA    8.048655369333  -2.483374137967  -0.920672678162 Bohr
+[INPUT] 16 Al     0.126003000000   0.002949000000   0.095407000000 AA    0.238111160874   0.005572802341   0.180293100366 Bohr
+[INPUT] 17 Al    -3.541848000000   1.338309000000   0.532567000000 AA   -6.693122694839   2.529037480041   1.006405772981 Bohr
+[INPUT] 18 Al    -4.992683000000  -0.044628000000  -1.381676000000 AA   -9.434803496772  -0.084334697487  -2.610989232885 Bohr
+
+nuclear repulsion = 3499.47534226042
+number of shells = 90
+number of NR pGTOs = 972
+number of NR cGTOs = 162
+basis = sto-6g
+ecp = {}
+CPU time:         1.43
+
+
+******** <class 'pyscf.df.df_jk.density_fit.<locals>.DFHF'> ********
+method = DFHF-UHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al18-cation-doublet/tmpx0p_hk_3
+max_memory 4000 MB (current use 60 MB)
+number electrons alpha = 117  beta = 116
+Set gradient conv threshold to 3.16228e-05
+******** <class 'pyscf.df.df.DF'> ********
+auxbasis = None
+max_memory = 4000
+_cderi_to_save = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al18-cation-doublet/tmpuxm5154v
+Even tempered Gaussians are generated as DF auxbasis for  Al
+init E= -4340.50182796425
+  alpha nocc = 117  HOMO = -0.310638749154038  LUMO = -0.271539438982851
+  beta  nocc = 116  HOMO = -0.323241702194157  LUMO = -0.310638749154039
+
+WARN: system HOMO -0.310638749154039 >= system LUMO -0.310638749154039
+
+cycle= 1 E= -4336.38667796833  delta_E= 4.12  |g|= 0.413  |ddm|= 4.82
+  alpha nocc = 117  HOMO = -0.0148125935901294  LUMO = 0.0972255127661696
+  beta  nocc = 116  HOMO = -0.0118516444151057  LUMO = 0.0589647473576959
+cycle= 2 E= -4336.33183796069  delta_E= 0.0548  |g|= 0.515  |ddm|= 1.73
+  alpha nocc = 117  HOMO = -0.0932534735505097  LUMO = 0.0945193735406638
+  beta  nocc = 116  HOMO = -0.0896861518788131  LUMO = 0.0562038738945683
+cycle= 3 E= -4336.55992103597  delta_E= -0.228  |g|= 0.139  |ddm|= 0.959
+  alpha nocc = 117  HOMO = -0.106532066441039  LUMO = 0.0891503806618467
+  beta  nocc = 116  HOMO = -0.0990344409807277  LUMO = 0.0534717828386888
+cycle= 4 E= -4336.57427501909  delta_E= -0.0144  |g|= 0.0843  |ddm|= 0.359
+  alpha nocc = 117  HOMO = -0.112804439180203  LUMO = 0.0901985309317911
+  beta  nocc = 116  HOMO = -0.107757096824221  LUMO = 0.0555942111692063
+cycle= 5 E= -4336.5840111422  delta_E= -0.00974  |g|= 0.0208  |ddm|= 0.226
+  alpha nocc = 117  HOMO = -0.111207858655709  LUMO = 0.0910219451889703
+  beta  nocc = 116  HOMO = -0.106759842792409  LUMO = 0.0585175026523735
+cycle= 6 E= -4336.5854932834  delta_E= -0.00148  |g|= 0.0115  |ddm|= 0.109
+  alpha nocc = 117  HOMO = -0.111310840659212  LUMO = 0.0917412289150031
+  beta  nocc = 116  HOMO = -0.10727207675087  LUMO = 0.0598722425189596
+cycle= 7 E= -4336.58611526689  delta_E= -0.000622  |g|= 0.00816  |ddm|= 0.0753
+  alpha nocc = 117  HOMO = -0.111106941689664  LUMO = 0.0919037149646747
+  beta  nocc = 116  HOMO = -0.10713948491509  LUMO = 0.0609563637566415
+cycle= 8 E= -4336.58640393301  delta_E= -0.000289  |g|= 0.00764  |ddm|= 0.0467
+  alpha nocc = 117  HOMO = -0.110947905229925  LUMO = 0.0919322723479916
+  beta  nocc = 116  HOMO = -0.107004868609238  LUMO = 0.062321877089516
+cycle= 9 E= -4336.58678392158  delta_E= -0.00038  |g|= 0.00517  |ddm|= 0.0667
+  alpha nocc = 117  HOMO = -0.110833676934283  LUMO = 0.0919859675324186
+  beta  nocc = 116  HOMO = -0.107085758250981  LUMO = 0.0629231592858205
+cycle= 10 E= -4336.5870540169  delta_E= -0.00027  |g|= 0.00503  |ddm|= 0.052
+  alpha nocc = 117  HOMO = -0.110763639313167  LUMO = 0.0919992903140204
+  beta  nocc = 116  HOMO = -0.107120171457878  LUMO = 0.0632138849898252
+cycle= 11 E= -4336.58719695568  delta_E= -0.000143  |g|= 0.00505  |ddm|= 0.0274
+  alpha nocc = 117  HOMO = -0.110791215743414  LUMO = 0.0919683334777359
+  beta  nocc = 116  HOMO = -0.10713182808226  LUMO = 0.0632446602393039

@@ -70,7 +70,7 @@ System: uname_result(system='Linux', node='comphys', release='3.10.0-1160.119.1.
 Python 3.7.9 (default, Dec  4 2023, 13:00:18) 
 [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
 numpy 1.21.6  scipy 1.7.3
-Date: Sun May 25 19:15:16 2025
+Date: Tue May 27 16:42:01 2025
 PySCF version 1.7.0
 PySCF path  /share/installs/pyscf/pyscf
 GIT HEAD      ref: refs/heads/ob-mp2
@@ -79,20 +79,20 @@ GIT ob-mp2 branch  f0fc63383ab6c719c0c91f5e07a6895c637b700d
 [CONFIG] conf_file None
 [INPUT] verbose = 4
 [INPUT] num. atoms = 1
-[INPUT] num. electrons = 0
+[INPUT] num. electrons = 12
 [INPUT] charge = 1
 [INPUT] spin (= nelec alpha-beta = 2S) = 0
 [INPUT] symmetry False subgroup None
 [INPUT] Mole.unit = A
-[INPUT]  1 H      0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr
+[INPUT]  1 Al     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr
 
 nuclear repulsion = 0
-number of shells = 1
-number of NR pGTOs = 6
-number of NR cGTOs = 1
+number of shells = 5
+number of NR pGTOs = 54
+number of NR cGTOs = 9
 basis = sto-6g
 ecp = {}
-CPU time:         1.43
+CPU time:         1.38
 
 
 ******** <class 'pyscf.df.df_jk.density_fit.<locals>.DFHF'> ********
@@ -108,19 +108,147 @@ SCF conv_tol_grad = None
 SCF max_cycles = 50
 direct_scf = True
 direct_scf_tol = 1e-13
-chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al-cation-singlet/tmpi3tnxevh
+chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al-cation-singlet/tmpqfr1y117
 max_memory 4000 MB (current use 60 MB)
-number electrons alpha = 0  beta = 0
+number electrons alpha = 6  beta = 6
 Set gradient conv threshold to 3.16228e-05
 ******** <class 'pyscf.df.df.DF'> ********
 auxbasis = None
 max_memory = 4000
-_cderi_to_save = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al-cation-singlet/tmpg5fzpnme
-Even tempered Gaussians are generated as DF auxbasis for  H
-init E= -0.276169165772114
-cycle= 1 E= 0  delta_E= 0.276  |g|=    0  |ddm|= 0.698
-cycle= 2 E= 0  delta_E=    0  |g|=    0  |ddm|=    0
-Extra cycle  E= 0  delta_E=    0  |g|=    0  |ddm|=    0
-converged SCF energy = 0  <S^2> = 0  2S+1 = 1
+_cderi_to_save = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al-cation-singlet/tmp4zr4c8_5
+Even tempered Gaussians are generated as DF auxbasis for  Al
+init E= -240.570090103273
+  alpha nocc = 6  HOMO = -0.341822596380746  LUMO = 0.236146008946415
+  beta  nocc = 6  HOMO = -0.341822596380746  LUMO = 0.236146008946415
+cycle= 1 E= -240.836855739704  delta_E= -0.267  |g|= 0.0271  |ddm|= 0.432
+  alpha nocc = 6  HOMO = -0.599846233146451  LUMO = 0.0243767533993693
+  beta  nocc = 6  HOMO = -0.599846233146451  LUMO = 0.0243767533993693
+cycle= 2 E= -240.837076939003  delta_E= -0.000221  |g|= 0.000136  |ddm|= 0.013
+  alpha nocc = 6  HOMO = -0.59867023034158  LUMO = 0.0254383708691384
+  beta  nocc = 6  HOMO = -0.59867023034158  LUMO = 0.0254383708691383
+cycle= 3 E= -240.837076944573  delta_E= -5.57e-09  |g|= 1.28e-07  |ddm|= 6.54e-05
+  alpha nocc = 6  HOMO = -0.598670251526157  LUMO = 0.0254383399527363
+  beta  nocc = 6  HOMO = -0.598670251526157  LUMO = 0.0254383399527362
+cycle= 4 E= -240.837076944573  delta_E=    0  |g|= 6.37e-08  |ddm|= 3.1e-08
+  alpha nocc = 6  HOMO = -0.598670275288065  LUMO = 0.0254383068170771
+  beta  nocc = 6  HOMO = -0.598670275288064  LUMO = 0.0254383068170773
+Extra cycle  E= -240.837076944573  delta_E= -1.14e-13  |g|= 3.8e-10  |ddm|= 3.06e-08
+converged SCF energy = -240.837076944573  <S^2> = -2.6645353e-15  2S+1 = 1
 shift = 0
 thresh = 1e-05 
+eri1 (113, 45)
+eri1 (113, 45)
+    CPU time for making amplitude: integral transform      0.01 sec, wall time      0.00 sec
+shape (113, 27)
+1st memory: 107.9 MiB
+eri1 (113, 45)
+eri1 (113, 45)
+2nd memory: 107.9 MiB
+
+========================
+iter = 0  energy = -240.865920 energy diff = 240.865920
+multiplicity <S^2> : Reference = -2.6645353e-15 Response = -2.6645353e-15 Projector = -2.6645353e-15
+eri1 (113, 45)
+eri1 (113, 45)
+    CPU time for making amplitude: integral transform      0.02 sec, wall time      0.00 sec
+shape (113, 27)
+1st memory: 107.9 MiB
+eri1 (113, 45)
+eri1 (113, 45)
+2nd memory: 107.9 MiB
+
+========================
+iter = 1  energy = -240.865944 energy diff = 0.000025
+multiplicity <S^2> : Reference = 1.7763568e-15 Response = 1.7763568e-15 Projector = 1.7763568e-15
+eri1 (113, 45)
+eri1 (113, 45)
+    CPU time for making amplitude: integral transform      0.01 sec, wall time      0.00 sec
+shape (113, 27)
+1st memory: 107.9 MiB
+eri1 (113, 45)
+eri1 (113, 45)
+2nd memory: 107.9 MiB
+
+========================
+iter = 2  energy = -240.865944 energy diff = 0.000001
+multiplicity <S^2> : Reference = 0 Response = -2.048625e-33 Projector = -4.0972501e-33
+
+UOB-MP2 has converged
+UOB-MP2 energy =  -240.86594368207653
+shift = 0
+thresh = 1e-05 
+eri1 (113, 45)
+eri1 (113, 45)
+    CPU time for making amplitude: integral transform      0.02 sec, wall time      0.00 sec
+shape (113, 27)
+1st memory: 107.9 MiB
+eri1 (113, 45)
+eri1 (113, 45)
+2nd memory: 107.9 MiB
+
+========================
+iter = 0  energy = -240.862879 energy diff = 240.862879
+multiplicity <S^2> : Reference = -2.6645353e-15 Response = -2.6645353e-15 Projector = -2.6645353e-15
+eri1 (113, 45)
+eri1 (113, 45)
+    CPU time for making amplitude: integral transform      0.01 sec, wall time      0.00 sec
+shape (113, 27)
+1st memory: 107.9 MiB
+eri1 (113, 45)
+eri1 (113, 45)
+2nd memory: 107.9 MiB
+
+========================
+iter = 1  energy = -240.863328 energy diff = 0.000448
+multiplicity <S^2> : Reference = 0 Response = -6.9968165e-34 Projector = -1.3993633e-33
+eri1 (113, 45)
+eri1 (113, 45)
+    CPU time for making amplitude: integral transform      0.01 sec, wall time      0.00 sec
+shape (113, 27)
+1st memory: 107.9 MiB
+eri1 (113, 45)
+eri1 (113, 45)
+2nd memory: 107.9 MiB
+
+========================
+iter = 2  energy = -240.863334 energy diff = 0.000007
+multiplicity <S^2> : Reference = 0 Response = 1.5961774e-33 Projector = 3.1923549e-33
+
+UOB-MP2 has converged
+UOB-MP2 energy =  -240.86333440602942
+
+
+******** <class 'pyscf.scf.uhf.UHF'> ********
+method = UHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /home/ltkoanh/Al_B2LYP_6311_Gd_Cluster/Cluster/Al-cation-singlet/tmpdwzx982l
+max_memory 4000 MB (current use 107 MB)
+number electrons alpha = 6  beta = 6
+Set gradient conv threshold to 3.16228e-05
+init E= -240.570087903999
+  alpha nocc = 6  HOMO = -0.341821996207186  LUMO = 0.236146751114007
+  beta  nocc = 6  HOMO = -0.341821996207186  LUMO = 0.236146751114007
+cycle= 1 E= -240.836854012332  delta_E= -0.267  |g|= 0.0271  |ddm|= 0.432
+  alpha nocc = 6  HOMO = -0.599845806194808  LUMO = 0.0243773894392311
+  beta  nocc = 6  HOMO = -0.599845806194808  LUMO = 0.0243773894392311
+cycle= 2 E= -240.83707521196  delta_E= -0.000221  |g|= 0.000136  |ddm|= 0.013
+  alpha nocc = 6  HOMO = -0.598669802551062  LUMO = 0.0254390081096699
+  beta  nocc = 6  HOMO = -0.598669802551062  LUMO = 0.0254390081096699
+cycle= 3 E= -240.837075217529  delta_E= -5.57e-09  |g|= 1.28e-07  |ddm|= 6.54e-05
+  alpha nocc = 6  HOMO = -0.598669823735581  LUMO = 0.0254389771933277
+  beta  nocc = 6  HOMO = -0.598669823735581  LUMO = 0.0254389771933277
+cycle= 4 E= -240.83707521753  delta_E= -1.42e-13  |g|= 6.37e-08  |ddm|= 3.1e-08
+  alpha nocc = 6  HOMO = -0.598669847497431  LUMO = 0.0254389440577237
+  beta  nocc = 6  HOMO = -0.598669847497431  LUMO = 0.0254389440577237
+Extra cycle  E= -240.837075217529  delta_E= 1.99e-13  |g|= 3.8e-10  |ddm|= 3.06e-08
+converged SCF energy = -240.837075217529  <S^2> = -8.8817842e-16  2S+1 = 1
